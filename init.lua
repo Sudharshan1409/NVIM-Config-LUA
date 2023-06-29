@@ -1,0 +1,3 @@
+require("sudConfig")
+print("hello")
+
