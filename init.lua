@@ -1,3 +1,2 @@
 require("sudConfig")
-print("hello")
 

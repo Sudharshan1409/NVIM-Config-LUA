@@ -7,6 +7,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+vim.opt.autoindent = true
 
 vim.opt.wrap = false
 vim.opt.splitbelow = true
@@ -30,4 +31,9 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+vim.g["prettier#autoformat"] = 1
+vim.g["prettier#autoformat_require_pragma"] = 0
+vim.cmd("autocmd BufWritePost * Prettier")
+vim.g["netrw_localrmdir"] = "rm -r"
+vim.g["netrw_liststyle"] = 3
 
