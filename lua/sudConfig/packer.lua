@@ -23,30 +23,38 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
     use('scrooloose/nerdcommenter')
     use {
-            'VonHeikemen/lsp-zero.nvim',
-            branch = 'v2.x',
-            requires = {
-                -- LSP Support
-                {'neovim/nvim-lspconfig'},             -- Required
-                {                                      -- Optional
-                    'williamboman/mason.nvim',
-                    run = function()
-                        pcall(vim.cmd, 'MasonUpdate')
-                    end,
-                },
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},             -- Required
+            {                                      -- Optional
+            'williamboman/mason.nvim',
+            run = function()
+                pcall(vim.cmd, 'MasonUpdate')
+            end,
+        },
+        {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},     -- Required
-            {'hrsh7th/cmp-nvim-lsp'}, -- Required
-            {'L3MON4D3/LuaSnip'},     -- Required
-        }
+        -- Autocompletion
+        {'hrsh7th/nvim-cmp'},     -- Required
+        {'hrsh7th/cmp-nvim-lsp'}, -- Required
+        {'L3MON4D3/LuaSnip'},     -- Required
     }
-    use('airblade/vim-rooter')
-    use('tpope/vim-surround')
-    use('neovim/nvim-lspconfig')
-    use('jose-elias-alvarez/null-ls.nvim')
-    use('MunifTanjim/prettier.nvim')
-
-    use('ThePrimeagen/vim-be-good')
+}
+use('airblade/vim-rooter')
+use('tpope/vim-surround')
+use('neovim/nvim-lspconfig')
+use('jose-elias-alvarez/null-ls.nvim')
+use('MunifTanjim/prettier.nvim')
+use('ThePrimeagen/vim-with-me')
+use('ThePrimeagen/vim-be-good')
+use('eandrju/cellular-automaton.nvim')
+use('vim-airline/vim-airline')
+use('vim-airline/vim-airline-themes')
+use { 'mg979/vim-visual-multi', branch = 'master' }
+use('andymass/vim-matchup')
+use('RRethy/vim-illuminate')
+use('godlygeek/tabular')
+use('preservim/vim-markdown')
 end)

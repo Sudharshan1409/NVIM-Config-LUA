@@ -16,6 +16,7 @@ prettier.setup({
     "markdown",
     "scss",
     "typescript",
+    "lua",
     "python",
     "typescriptreact",
     "yaml",
