@@ -48,9 +48,6 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>o", "o<Esc>")
 vim.keymap.set("n", "<leader>O", "O<Esc>")
 
--- save file and exit when in insert mode
-vim.keymap.set("i", "<C-w>", "<C-c><cmd>w<CR>")
-
 vim.keymap.set("n", "<leader>k", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz")
 
