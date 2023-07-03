@@ -50,16 +50,31 @@ vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>pf", "<cmd>vs ~/.config/nvim/lua/sudConfig/packer.lua<CR>");
-vim.keymap.set("n", "<leader>rf", "<cmd>vs ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
+-- open packer file anywhere
+vim.keymap.set("n", "<leader>pf", "<cmd>e ~/.config/nvim/lua/sudConfig/packer.lua<CR>");
+vim.keymap.set("n", "<leader>vpf", "<cmd>vs ~/.config/nvim/lua/sudConfig/packer.lua<CR>");
 vim.keymap.set("n", "<leader>hpf", "<cmd>sp ~/.config/nvim/lua/sudConfig/packer.lua<CR>");
+
+-- open remap file anywhere
+vim.keymap.set("n", "<leader>rf", "<cmd>e ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
+vim.keymap.set("n", "<leader>vrf", "<cmd>vs ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
 vim.keymap.set("n", "<leader>hrf", "<cmd>sp ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
+
+-- open set set file anywhere
+vim.keymap.set("n", "<leader>sf", "<cmd>e ~/.config/nvim/lua/sudConfig/set.lua<CR>");
+vim.keymap.set("n", "<leader>vsf", "<cmd>vs ~/.config/nvim/lua/sudConfig/set.lua<CR>");
+vim.keymap.set("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/sudConfig/set.lua<CR>");
+
+-- Celluar Automaton Stuff
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader>gl", "<cmd>CellularAutomaton game_of_life<CR>");
+
+-- open terminal in splits
 vim.keymap.set("n", "<leader>vt", "<cmd>vs | term<CR>");
 vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
-
+-- change terminal exit command
+vim.keymap.set("t", "<C-q>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
