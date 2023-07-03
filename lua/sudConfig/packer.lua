@@ -56,5 +56,7 @@ use('andymass/vim-matchup')
 use('RRethy/vim-illuminate')
 use('godlygeek/tabular')
 use('preservim/vim-markdown')
+use('tpope/vim-git')
+use('akinsho/toggleterm.nvim')
 
 end)
