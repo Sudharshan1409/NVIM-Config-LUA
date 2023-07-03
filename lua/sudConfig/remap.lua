@@ -67,7 +67,6 @@ vim.keymap.set("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/sudConfig/set.lua
 
 -- Celluar Automaton Stuff
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-vim.keymap.set("n", "<leader>gl", "<cmd>CellularAutomaton game_of_life<CR>");
 
 -- open terminal in splits
 vim.keymap.set("n", "<leader>vt", "<cmd>vs | term<CR>");
