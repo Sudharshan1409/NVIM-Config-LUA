@@ -1,6 +1,6 @@
 
 
-function PromptPush()
+function GitPush()
   local remote_and_branch = vim.fn.input("Remote and branch: ")
 
   if remote ~= "" and branch ~= "" then
