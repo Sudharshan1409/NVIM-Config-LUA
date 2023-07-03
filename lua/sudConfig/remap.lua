@@ -73,11 +73,11 @@ vim.keymap.set("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/sudConfig/set.lua
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 -- open terminal in splits
-vim.keymap.set("n", "<leader>vt", "<cmd>vs | term<CR>");
+vim.keymap.set("n", "<leader>vt", "<cmd>100 vs | term<CR>");
 vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
 -- change terminal exit command
-vim.keymap.set("t", "<C-q>", "<C-\\><C-n>")
+vim.keymap.set("t", "<C-c>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
