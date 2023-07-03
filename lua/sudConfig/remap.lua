@@ -56,6 +56,9 @@ vim.keymap.set("n", "<leader>hpf", "<cmd>sp ~/.config/nvim/lua/sudConfig/packer.
 vim.keymap.set("n", "<leader>hrf", "<cmd>sp ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader>gl", "<cmd>CellularAutomaton game_of_life<CR>");
+vim.keymap.set("n", "<leader>vt", "<cmd>vs | term<CR>");
+vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
+
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
