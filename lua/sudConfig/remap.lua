@@ -77,7 +77,7 @@ vim.keymap.set("n", "<leader>vt", "<cmd>100 vs | term<CR>");
 vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
 -- change terminal exit command
-vim.keymap.set("t", "<C-c>", "<C-\\><C-n>")
+vim.keymap.set("t", "<C-q>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
