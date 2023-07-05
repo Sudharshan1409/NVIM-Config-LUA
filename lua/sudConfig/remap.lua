@@ -69,6 +69,11 @@ vim.keymap.set("n", "<leader>sf", "<cmd>e ~/.config/nvim/lua/sudConfig/set.lua<C
 vim.keymap.set("n", "<leader>vsf", "<cmd>vs ~/.config/nvim/lua/sudConfig/set.lua<CR>");
 vim.keymap.set("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/sudConfig/set.lua<CR>");
 
+-- open set set file anywhere
+vim.keymap.set("n", "<leader>lsp", "<cmd>e ~/.config/nvim/after/plugin/lsp.lua<CR>");
+vim.keymap.set("n", "<leader>vlsp", "<cmd>vs ~/.config/nvim/after/plugin/lsp.lua<CR>");
+vim.keymap.set("n", "<leader>hlsp", "<cmd>sp ~/.config/nvim/after/plugin/lsp.lua<CR>");
+
 -- Celluar Automaton Stuff
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
