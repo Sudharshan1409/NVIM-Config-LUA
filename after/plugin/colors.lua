@@ -9,7 +9,7 @@ function ChangeTheme(color)
     -- local colorScheme = colors[math.random(#colors)]
     -- print("ColorScheme: " .. colorScheme)
     -- color = color or colorScheme
-    color = color or "gruvbox"
+    color = color or "dracula-soft"
     vim.cmd('colorscheme ' .. color)
 
     local normal_hl = vim.api.nvim_get_hl_by_name('Normal', true)
@@ -30,3 +30,10 @@ augroup MyColors
     autocmd VimEnter,ColorScheme * lua ChangeTheme()
 augroup END
 ]])
+
+function ChangeThemeSelect()
+    local color = vim.fn.input("ColorScheme: ")
+    ChangeTheme(color)
+end
+
+vim.keymap.set("n", "<leader>cs", "<cmd>lua ChangeThemeSelect()<cr>", { noremap = true, silent = true })
