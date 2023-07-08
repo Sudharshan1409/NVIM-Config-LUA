@@ -1,5 +1,15 @@
-function ColorMyPencils(color)
-    color = color or "rose-pine"
+function ChangeTheme(color)
+    local colors = {
+        "gruvbox",
+        "rose-pine",
+        "nord",
+        "onedark",
+        "dracula-soft",
+    }
+    -- local colorScheme = colors[math.random(#colors)]
+    -- print("ColorScheme: " .. colorScheme)
+    -- color = color or colorScheme
+    color = color or "gruvbox"
     vim.cmd('colorscheme ' .. color)
 
     local normal_hl = vim.api.nvim_get_hl_by_name('Normal', true)
@@ -12,11 +22,11 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, 'NormalFloat', normal_float_hl)
 end
 
-ColorMyPencils()
+ChangeTheme()
 
 vim.cmd([[
 augroup MyColors
     autocmd!
-    autocmd VimEnter,ColorScheme * lua ColorMyPencils()
+    autocmd VimEnter,ColorScheme * lua ChangeTheme()
 augroup END
 ]])

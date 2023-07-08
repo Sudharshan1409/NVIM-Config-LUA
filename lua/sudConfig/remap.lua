@@ -10,17 +10,23 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 
+local opts = { noremap = true, silent = true }
+
 -- Set key mappings for split resizes
-vim.api.nvim_set_keymap("n", "<C-S-j>", "<cmd>resize +2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-S-k>", "<cmd>resize -2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-S-l>", "<cmd>vertical resize +2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-S-h>", "<cmd>vertical resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-j>", "<cmd>resize +2<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-S-k>", "<cmd>resize -2<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-S-l>", "<cmd>vertical resize +2<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-S-h>", "<cmd>vertical resize -2<CR>", opts)
 
 -- Change 2 split windows from vertical to horizontal or vice versa
-vim.api.nvim_set_keymap("n", "<leader>th", "<C-W>t<C-W>H", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>tk", "<C-W>t<C-W>K", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>th", "<C-W>t<C-W>H", opts)
+vim.api.nvim_set_keymap("n", "<leader>tk", "<C-W>t<C-W>K", opts)
 
+-- Nerd Tree Toggle
 
+vim.keymap.set("n", "<leader>nt", "<cmd>NERDTreeToggle<CR>")
+vim.keymap.set("n", "<leader>nf", "<cmd>NERDTreeFocus<CR>")
+vim.keymap.set("n", "<leader>ns", "<cmd>NERDTreeFind<CR>")
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -30,6 +36,8 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("n", "<leader>p", [["+p]])
+vim.keymap.set("n", "<leader>P", [["+P]])
 
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
@@ -40,7 +48,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
-vim.keymap.set("n", "Q", "<cmd>q<CR>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
@@ -51,8 +58,8 @@ vim.keymap.set("n", "<leader>O", "O<Esc>")
 vim.keymap.set("n", "<leader>k", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) -- search and replace word under cursor
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })              -- make file executable
 
 -- open packer file anywhere
 vim.keymap.set("n", "<leader>pf", "<cmd>e ~/.config/nvim/lua/sudConfig/packer.lua<CR>");
@@ -81,8 +88,39 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader>vt", "<cmd>100 vs | term<CR>");
 vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
+-- barbar config
+
+
+-- Move to previous/next
+vim.api.nvim_set_keymap('n', '<C-,>', '<Cmd>BufferPrevious<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C-.>', '<Cmd>BufferNext<CR>', opts)
+
+-- Re-order to previous/next
+vim.api.nvim_set_keymap('n', '<C-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C->>', '<Cmd>BufferMoveNext<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C-S-p>', '<Cmd>BufferPick<CR>', opts)
+-- Close buffer
+vim.api.nvim_set_keymap('n', '<C-S-c>', '<Cmd>BufferClose<CR>', opts)
+
 -- change terminal exit command
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n>")
+
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
+end)
+
+vim.keymap.set("n", "<leader>w", function()
+    vim.cmd("w")
+end)
+
+vim.keymap.set("n", "<leader>W", function()
+    vim.cmd("wa")
+end)
+
+vim.keymap.set("n", "<leader>q", function()
+    vim.cmd("q")
+end)
+
+vim.keymap.set("n", "<leader>Q", function()
+    vim.cmd("qa")
 end)

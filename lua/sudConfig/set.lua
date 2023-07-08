@@ -30,19 +30,17 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.g["prettier#autoformat"] = 1
-vim.g["prettier#autoformat_require_pragma"] = 0
-vim.cmd("autocmd BufWritePost * Prettier")
 vim.g["netrw_localrmdir"] = "rm -r"
 
 vim.cmd [[highlight CursorLine guibg=#282c34]]
 vim.cmd [[highlight CursorLineNr guifg=#abb2bf guibg=#282c34]]
 
 vim.api.nvim_exec([[
+
+
 augroup CursorLineHighlight
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
 augroup END
 ]], false)
-
