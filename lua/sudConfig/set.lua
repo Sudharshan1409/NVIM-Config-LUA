@@ -32,6 +32,13 @@ vim.opt.updatetime = 50
 
 vim.g["netrw_localrmdir"] = "rm -r"
 
+vim.api.nvim_exec([[
+augroup Mkdir
+  autocmd!
+  autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
+augroup END
+]], false)
+
 -- vim.api.nvim_exec([[
 -- augroup CursorLineHighlight
 --     autocmd!

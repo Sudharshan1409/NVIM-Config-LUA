@@ -5,18 +5,12 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 --split navigations
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
+vim.keymap.set("n", "<C-j>", "TmuxNavigateDown")
+vim.keymap.set("n", "<C-k>", "TmuxNavigateUp")
+vim.keymap.set("n", "<C-l>", "TmuxNavigateRight")
+vim.keymap.set("n", "<C-h>", "TmuxNavigateLeft")
 
 local opts = { noremap = true, silent = true }
-
--- Set key mappings for split resizes
-vim.api.nvim_set_keymap("n", "<C-S-j>", "<cmd>resize +2<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-S-k>", "<cmd>resize -2<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-S-l>", "<cmd>vertical resize +2<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-S-h>", "<cmd>vertical resize -2<CR>", opts)
 
 -- Change 2 split windows from vertical to horizontal or vice versa
 vim.api.nvim_set_keymap("n", "<leader>th", "<C-W>t<C-W>H", opts)
@@ -71,10 +65,15 @@ vim.keymap.set("n", "<leader>rf", "<cmd>e ~/.config/nvim/lua/sudConfig/remap.lua
 vim.keymap.set("n", "<leader>vrf", "<cmd>vs ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
 vim.keymap.set("n", "<leader>hrf", "<cmd>sp ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
 
--- open set set file anywhere
+-- open set file anywhere
 vim.keymap.set("n", "<leader>sf", "<cmd>e ~/.config/nvim/lua/sudConfig/set.lua<CR>");
 vim.keymap.set("n", "<leader>vsf", "<cmd>vs ~/.config/nvim/lua/sudConfig/set.lua<CR>");
 vim.keymap.set("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/sudConfig/set.lua<CR>");
+
+-- open telescope file anywhere
+vim.keymap.set("n", "<leader>tf", "<cmd>e ~/.config/nvim/after/plugin/telescope.lua<CR>");
+vim.keymap.set("n", "<leader>vtf", "<cmd>vs ~/.config/nvim/after/plugin/telescope.lua<CR>");
+vim.keymap.set("n", "<leader>htf", "<cmd>sp ~/.config/nvim/after/plugin/telescope.lua<CR>");
 
 -- open set set file anywhere
 vim.keymap.set("n", "<leader>lsp", "<cmd>e ~/.config/nvim/after/plugin/lsp.lua<CR>");
@@ -92,13 +91,11 @@ vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
 
 -- Move to previous/next
-vim.api.nvim_set_keymap('n', '<C-,>', '<Cmd>BufferPrevious<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-.>', '<Cmd>BufferNext<CR>', opts)
+vim.keymap.set('n', '<A-Left>', '<Cmd>BufferPrevious<CR>', opts)
+vim.keymap.set('n', '<A-Right>', '<Cmd>BufferNext<CR>', opts)
 
 -- Re-order to previous/next
-vim.api.nvim_set_keymap('n', '<C-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C->>', '<Cmd>BufferMoveNext<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-S-p>', '<Cmd>BufferPick<CR>', opts)
+vim.keymap.set('n', '<C-S-p>', '<Cmd>BufferPick<CR>', opts)
 -- Close buffer
 vim.api.nvim_set_keymap('n', '<C-S-c>', '<Cmd>BufferClose<CR>', opts)
 
