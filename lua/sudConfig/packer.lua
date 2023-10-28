@@ -80,4 +80,5 @@ return require('packer').startup(function(use)
     use('romgrk/barbar.nvim')          -- OPTIONAL: for buffer tabline
 
     use("christoomey/vim-tmux-navigator")
+    use("petertriho/nvim-scrollbar")
 end)

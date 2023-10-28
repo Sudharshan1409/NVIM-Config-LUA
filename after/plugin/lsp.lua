@@ -41,6 +41,8 @@ lsp.setup_nvim_cmp({
     mapping = cmp_mappings
 })
 
+lspconfig.tsserver.setup {}
+
 lsp.set_preferences({
     suggest_lsp_servers = true,
     sign_icons = {
@@ -74,6 +76,7 @@ lsp.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
+        ['tsserver'] = { 'typescript' },
         ['null-ls'] = { 'javascript', 'typescript', },
         ['yaml-language-server'] = { 'yaml', 'yml' },
         ['jsonls'] = { 'json' },

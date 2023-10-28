@@ -91,13 +91,22 @@ vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
 
 -- Move to previous/next
-vim.keymap.set('n', '<A-Left>', '<Cmd>BufferPrevious<CR>', opts)
-vim.keymap.set('n', '<A-Right>', '<Cmd>BufferNext<CR>', opts)
+vim.keymap.set('n', '<leader><Left>', '<Cmd>BufferPrevious<CR>', opts)
+vim.keymap.set('n', '<leader><Right>', '<Cmd>BufferNext<CR>', opts)
+
+-- Pin the buffer
+vim.keymap.set('n', '<leader>pb', '<Cmd>BufferPin<CR>', opts)
+
+-- Close all buffer except pinned
+vim.keymap.set('n', '<leader>bcp', '<Cmd>BufferCloseAllButPinned<CR>', opts)
+
+-- Close all buffer except current
+vim.keymap.set('n', '<leader>bc', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
 
 -- Re-order to previous/next
-vim.keymap.set('n', '<C-S-p>', '<Cmd>BufferPick<CR>', opts)
+vim.keymap.set('n', '<leader>bp', '<Cmd>BufferPick<CR>', opts)
 -- Close buffer
-vim.api.nvim_set_keymap('n', '<C-S-c>', '<Cmd>BufferClose<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>cb', '<Cmd>BufferClose<CR>', opts)
 
 -- change terminal exit command
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n>")
