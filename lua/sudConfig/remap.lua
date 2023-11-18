@@ -75,11 +75,6 @@ vim.keymap.set("n", "<leader>tf", "<cmd>e ~/.config/nvim/after/plugin/telescope.
 vim.keymap.set("n", "<leader>vtf", "<cmd>vs ~/.config/nvim/after/plugin/telescope.lua<CR>");
 vim.keymap.set("n", "<leader>htf", "<cmd>sp ~/.config/nvim/after/plugin/telescope.lua<CR>");
 
--- open set set file anywhere
-vim.keymap.set("n", "<leader>lsp", "<cmd>e ~/.config/nvim/after/plugin/lsp.lua<CR>");
-vim.keymap.set("n", "<leader>vlsp", "<cmd>vs ~/.config/nvim/after/plugin/lsp.lua<CR>");
-vim.keymap.set("n", "<leader>hlsp", "<cmd>sp ~/.config/nvim/after/plugin/lsp.lua<CR>");
-
 -- Celluar Automaton Stuff
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
@@ -89,7 +84,7 @@ vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
 -- open nvim file in popup
 vim.keymap.set("n", "<leader>nvim",
-    "<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>");
+    "<cmd>vigateRight qulua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>");
 
 -- barbar config
 -- Move to previous/next
