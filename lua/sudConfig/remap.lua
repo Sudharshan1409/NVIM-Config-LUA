@@ -87,9 +87,11 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader>vt", "<cmd>100 vs | term<CR>");
 vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
+-- open nvim file in popup
+vim.keymap.set("n", "<leader>nvim",
+    "<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>");
+
 -- barbar config
-
-
 -- Move to previous/next
 vim.keymap.set('n', '<leader><Left>', '<Cmd>BufferPrevious<CR>', opts)
 vim.keymap.set('n', '<leader><Right>', '<Cmd>BufferNext<CR>', opts)
@@ -105,8 +107,15 @@ vim.keymap.set('n', '<leader>bc', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
 
 -- Re-order to previous/next
 vim.keymap.set('n', '<leader>bp', '<Cmd>BufferPick<CR>', opts)
+
 -- Close buffer
 vim.api.nvim_set_keymap('n', '<leader>cb', '<Cmd>BufferClose<CR>', opts)
+
+-- Replace ' by " in entire file
+vim.keymap.set("n", "<leader>std", ":%s/'/\"/g<CR>")
+
+-- Replace " by ' in entire file
+vim.keymap.set("n", "<leader>dts", ":%s/\"/'/g<CR>")
 
 -- change terminal exit command
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n>")

@@ -29,6 +29,7 @@ vim.opt.signcolumn = "number"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+vim.wo.cursorline = true
 
 vim.g["netrw_localrmdir"] = "rm -r"
 
@@ -38,11 +39,3 @@ augroup Mkdir
   autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
 augroup END
 ]], false)
-
--- vim.api.nvim_exec([[
--- augroup CursorLineHighlight
---     autocmd!
---     autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
---     autocmd WinLeave * setlocal nocursorline
--- augroup END
--- ]], false)

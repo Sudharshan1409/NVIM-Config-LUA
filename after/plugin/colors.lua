@@ -20,6 +20,9 @@ function ChangeTheme(color)
 
     vim.api.nvim_set_hl(0, 'Normal', normal_hl)
     vim.api.nvim_set_hl(0, 'NormalFloat', normal_float_hl)
+
+    -- Highlight current line with a custom color (dimmer)
+    vim.cmd('highlight CursorLine cterm=NONE ctermbg=236 guibg=#2E323C')
 end
 
 ChangeTheme()

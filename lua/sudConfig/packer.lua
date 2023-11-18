@@ -5,8 +5,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-
+    use('wbthomason/packer.nvim')
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
@@ -81,4 +80,5 @@ return require('packer').startup(function(use)
 
     use("christoomey/vim-tmux-navigator")
     use("petertriho/nvim-scrollbar")
+    use("zyedidia/vim-snake")
 end)
