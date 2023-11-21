@@ -145,6 +145,15 @@ local plugins = {
             { "<leader>vs", "<cmd>VenvSelect<cr>" },
             -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
             { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
+        },
+        {
+            'stevearc/oil.nvim',
+            opts = {},
+            -- Optional dependencies
+            config = function()
+                require("oil").setup()
+            end,
+            dependencies = { "nvim-tree/nvim-web-devicons" },
         }
     },
 }
