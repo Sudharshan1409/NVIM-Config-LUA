@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>ft", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>ft", "<cmd>Oil --float<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -50,19 +50,19 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })              -- make file executable
 
 -- open packer file anywhere
-vim.keymap.set("n", "<leader>pf", "<cmd>e ~/.config/nvim/lua/sudConfig/packer.lua<CR>");
-vim.keymap.set("n", "<leader>vpf", "<cmd>vs ~/.config/nvim/lua/sudConfig/packer.lua<CR>");
-vim.keymap.set("n", "<leader>hpf", "<cmd>sp ~/.config/nvim/lua/sudConfig/packer.lua<CR>");
+vim.keymap.set("n", "<leader>pf", "<cmd>e ~/.config/nvim/lua/core/plugins.lua<CR>");
+vim.keymap.set("n", "<leader>vpf", "<cmd>vs ~/.config/nvim/lua/core/plugins.lua<CR>");
+vim.keymap.set("n", "<leader>hpf", "<cmd>sp ~/.config/nvim/lua/core/plugins.lua<CR>");
 
 -- open remap file anywhere
-vim.keymap.set("n", "<leader>rf", "<cmd>e ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
-vim.keymap.set("n", "<leader>vrf", "<cmd>vs ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
-vim.keymap.set("n", "<leader>hrf", "<cmd>sp ~/.config/nvim/lua/sudConfig/remap.lua<CR>");
+vim.keymap.set("n", "<leader>rf", "<cmd>e ~/.config/nvim/lua/core/remap.lua<CR>");
+vim.keymap.set("n", "<leader>vrf", "<cmd>vs ~/.config/nvim/lua/core/remap.lua<CR>");
+vim.keymap.set("n", "<leader>hrf", "<cmd>sp ~/.config/nvim/lua/core/remap.lua<CR>");
 
 -- open set file anywhere
-vim.keymap.set("n", "<leader>sf", "<cmd>e ~/.config/nvim/lua/sudConfig/set.lua<CR>");
-vim.keymap.set("n", "<leader>vsf", "<cmd>vs ~/.config/nvim/lua/sudConfig/set.lua<CR>");
-vim.keymap.set("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/sudConfig/set.lua<CR>");
+vim.keymap.set("n", "<leader>sf", "<cmd>e ~/.config/nvim/lua/core/set.lua<CR>");
+vim.keymap.set("n", "<leader>vsf", "<cmd>vs ~/.config/nvim/lua/core/set.lua<CR>");
+vim.keymap.set("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/core/set.lua<CR>");
 
 -- open telescope file anywhere
 vim.keymap.set("n", "<leader>tf", "<cmd>e ~/.config/nvim/after/plugin/telescope.lua<CR>");
@@ -79,6 +79,9 @@ vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 -- open nvim file in popup
 vim.keymap.set("n", "<leader>nvim",
     "<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>");
+
+-- oil.nvim shortcuts
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- barbar config
 -- Move to previous/next
