@@ -25,13 +25,15 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "number"
+vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 vim.wo.cursorline = true
 
 vim.g["netrw_localrmdir"] = "rm -r"
+-- Set the escape sequence to change the cursor to a line cursor in insert mode
+vim.api.nvim_command('let &t_SI = "\\e[6 q"')
 
 vim.api.nvim_exec([[
 augroup Mkdir

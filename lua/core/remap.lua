@@ -16,12 +16,6 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>th", "<C-W>t<C-W>H", opts)
 vim.api.nvim_set_keymap("n", "<leader>tk", "<C-W>t<C-W>K", opts)
 
--- Nerd Tree Toggle
-
-vim.keymap.set("n", "<leader>nt", "<cmd>NERDTreeToggle<CR>")
-vim.keymap.set("n", "<leader>nf", "<cmd>NERDTreeFocus<CR>")
-vim.keymap.set("n", "<leader>ns", "<cmd>NERDTreeFind<CR>")
-
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -84,7 +78,7 @@ vim.keymap.set("n", "<leader>ht", "<cmd>sp | term<CR>");
 
 -- open nvim file in popup
 vim.keymap.set("n", "<leader>nvim",
-    "<cmd>vigateRight qulua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>");
+    "<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>");
 
 -- barbar config
 -- Move to previous/next

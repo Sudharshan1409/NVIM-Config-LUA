@@ -6,9 +6,6 @@ function ChangeTheme(color)
         "onedark",
         "dracula-soft",
     }
-    -- local colorScheme = colors[math.random(#colors)]
-    -- print("ColorScheme: " .. colorScheme)
-    -- color = color or colorScheme
     color = color or "dracula-soft"
     vim.cmd('colorscheme ' .. color)
 

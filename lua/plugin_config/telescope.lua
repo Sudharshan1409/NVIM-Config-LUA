@@ -33,9 +33,9 @@ require('telescope').setup {
                 ['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
                 ['<cr>'] = custom_actions.fzf_multi_select,
                 -- open file in vertical split
-                ['<C-v>'] = actions.file_split,
+                ['<C-h>'] = actions.file_split,
                 -- open file in horizontal split
-                ['<C-h>'] = actions.file_vsplit,
+                ['<C-v>'] = actions.file_vsplit,
             },
             n = {
                 ['<esc>'] = actions.close,
@@ -43,9 +43,9 @@ require('telescope').setup {
                 ['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
                 ['<cr>'] = custom_actions.fzf_multi_select,
                 -- open file in vertical split
-                ['<C-v>'] = actions.file_split,
+                ['<C-h>'] = actions.file_split,
                 -- open file in horizontal split
-                ['<C-h>'] = actions.file_vsplit,
+                ['<C-v>'] = actions.file_vsplit,
             }
         },
     }
