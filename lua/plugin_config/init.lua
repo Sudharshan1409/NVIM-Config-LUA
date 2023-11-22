@@ -1,5 +1,4 @@
 require("plugin_config.colors")
-require("plugin_config.language")
 
 require("plugin_config.fugitive")
 require("plugin_config.harpoon")

@@ -125,9 +125,11 @@ vim.keymap.set("n", "<leader>W", function()
 end)
 
 vim.keymap.set("n", "<leader>q", function()
+    SESSION_MANAGEMENT.auto_save_session_in_working_directory()
     vim.cmd("q")
 end)
 
 vim.keymap.set("n", "<leader>Q", function()
+    SESSION_MANAGEMENT.auto_save_session_in_working_directory()
     vim.cmd("qa")
 end)

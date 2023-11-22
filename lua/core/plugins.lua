@@ -1,6 +1,7 @@
 -- This file can be loaded by calling `lua require("plugins")` from your init.vim
 -- Only required if you have packer configured as `opt`
 -- Packer can manage itself
+local utils = require('core.utils')
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -22,6 +23,8 @@ local plugins = {
     "theprimeagen/harpoon",
     "mbbill/undotree",
     "tpope/vim-fugitive",
+    "airblade/vim-rooter",
+
     {
         {
             'VonHeikemen/lsp-zero.nvim',
@@ -47,6 +50,7 @@ local plugins = {
             dependencies = {
                 { 'L3MON4D3/LuaSnip' },
             },
+            config = utils.cmp_config_function
         },
 
         -- LSP
@@ -58,9 +62,10 @@ local plugins = {
                 { 'hrsh7th/cmp-nvim-lsp' },
                 { 'williamboman/mason-lspconfig.nvim' },
             },
+            config = utils.lsp_config_function
         }
     },
-    "airblade/vim-rooter",
+
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -133,25 +138,12 @@ local plugins = {
             -- name = "venv",
             -- auto_refresh = false
         },
-        config = function()
-            require("venv_selector").setup({
-                -- Your configuration comes here
-                -- or leave it empty to use the default settings
-                -- Refer to the configuration section below
-            })
-        end,
-        keys = {
-            -- Keymap to open VenvSelector to pick a venv.
-            { "<leader>vs", "<cmd>VenvSelect<cr>" },
-            -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-            { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
-        },
-        {
-            'stevearc/oil.nvim',
-            opts = {},
-            -- Optional dependencies
-            dependencies = { "nvim-tree/nvim-web-devicons" },
-        }
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     "github/copilot.vim"
 }
