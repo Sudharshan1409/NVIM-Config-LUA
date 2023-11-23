@@ -35,6 +35,12 @@ vim.g["netrw_localrmdir"] = "rm -r"
 -- Set the escape sequence to change the cursor to a line cursor in insert mode
 vim.api.nvim_command('let &t_SI = "\\e[6 q"')
 
+vim.g.blamer_emabled = true
+vim.g.blamer_delay = 500
+vim.g.blamer_show_in_visual_modes = 0
+vim.g.blamer_show_in_insert_modes = 0
+
+
 vim.api.nvim_exec([[
 augroup Mkdir
   autocmd!

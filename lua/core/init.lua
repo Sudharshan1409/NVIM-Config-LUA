@@ -1,5 +1,4 @@
 require("core.remap")
-require("core.session_management")
 require("core.set")
 require("core.plugins")
 require("core.git_config")

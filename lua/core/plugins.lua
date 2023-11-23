@@ -145,7 +145,8 @@ local plugins = {
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
-    "github/copilot.vim"
+    "github/copilot.vim",
+    "APZelos/blamer.nvim",
 }
 
 local opts = {}

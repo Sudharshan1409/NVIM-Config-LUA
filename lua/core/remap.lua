@@ -22,6 +22,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- keymap to create buffer and open file
+vim.keymap.set("n", "<leader>fo", "<cmd>e hello.txt<CR>", { silent = true })
+
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("n", "<leader>p", [["+p]])
@@ -37,7 +40,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>fr", vim.lsp.buf.format)
 
 -- insert a line without going to insert mode
 vim.keymap.set("n", "<leader>o", "o<Esc>")
@@ -46,8 +49,17 @@ vim.keymap.set("n", "<leader>O", "O<Esc>")
 vim.keymap.set("n", "<leader>k", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) -- search and replace word under cursor
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })              -- make file executable
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s2", [[:.,+2s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s3", [[:.,+3s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s4", [[:.,+4s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s5", [[:.,+5s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s6", [[:.,+6s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s7", [[:.,+7s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s8", [[:.,+8s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s9", [[:.,+9s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }) -- make file executable
 
 -- open packer file anywhere
 vim.keymap.set("n", "<leader>pf", "<cmd>e ~/.config/nvim/lua/core/plugins.lua<CR>");
@@ -68,6 +80,7 @@ vim.keymap.set("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/core/set.lua<CR>"
 vim.keymap.set("n", "<leader>tf", "<cmd>e ~/.config/nvim/after/plugin/telescope.lua<CR>");
 vim.keymap.set("n", "<leader>vtf", "<cmd>vs ~/.config/nvim/after/plugin/telescope.lua<CR>");
 vim.keymap.set("n", "<leader>htf", "<cmd>sp ~/.config/nvim/after/plugin/telescope.lua<CR>");
+
 
 -- Celluar Automaton Stuff
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
@@ -125,11 +138,9 @@ vim.keymap.set("n", "<leader>W", function()
 end)
 
 vim.keymap.set("n", "<leader>q", function()
-    SESSION_MANAGEMENT.auto_save_session_in_working_directory()
     vim.cmd("q")
 end)
 
 vim.keymap.set("n", "<leader>Q", function()
-    SESSION_MANAGEMENT.auto_save_session_in_working_directory()
     vim.cmd("qa")
 end)
