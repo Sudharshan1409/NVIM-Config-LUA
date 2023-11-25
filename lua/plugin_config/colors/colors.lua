@@ -24,16 +24,4 @@ end
 
 ChangeTheme()
 
-vim.cmd([[
-augroup MyColors
-    autocmd!
-    autocmd VimEnter,ColorScheme * lua ChangeTheme()
-augroup END
-]])
-
-function ChangeThemeSelect()
-    local color = vim.fn.input("ColorScheme: ")
-    ChangeTheme(color)
-end
-
-vim.keymap.set("n", "<leader>cs", "<cmd>lua ChangeThemeSelect()<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cs", "<cmd>lua ColorTheme()<cr>", { noremap = true, silent = true })

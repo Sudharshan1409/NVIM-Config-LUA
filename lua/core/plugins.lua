@@ -1,7 +1,7 @@
 -- This file can be loaded by calling `lua require("plugins")` from your init.vim
 -- Only required if you have packer configured as `opt`
 -- Packer can manage itself
-local utils = require('core.utils')
+local utils = require("core.utils")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -27,8 +27,8 @@ local plugins = {
 
     {
         {
-            'VonHeikemen/lsp-zero.nvim',
-            branch = 'v3.x',
+            "VonHeikemen/lsp-zero.nvim",
+            branch = "v3.x",
             lazy = true,
             config = false,
             init = function()
@@ -38,29 +38,29 @@ local plugins = {
             end,
         },
         {
-            'williamboman/mason.nvim',
+            "williamboman/mason.nvim",
             lazy = false,
             config = true,
         },
 
         -- Autocompletion
         {
-            'hrsh7th/nvim-cmp',
-            event = 'InsertEnter',
+            "hrsh7th/nvim-cmp",
+            event = "InsertEnter",
             dependencies = {
-                { 'L3MON4D3/LuaSnip' },
+                { "L3MON4D3/LuaSnip" },
             },
             config = utils.cmp_config_function
         },
 
         -- LSP
         {
-            'neovim/nvim-lspconfig',
-            cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
-            event = { 'BufReadPre', 'BufNewFile' },
+            "neovim/nvim-lspconfig",
+            cmd = { "LspInfo", "LspInstall", "LspStart" },
+            event = { "BufReadPre", "BufNewFile" },
             dependencies = {
-                { 'hrsh7th/cmp-nvim-lsp' },
-                { 'williamboman/mason-lspconfig.nvim' },
+                { "hrsh7th/cmp-nvim-lsp" },
+                { "williamboman/mason-lspconfig.nvim" },
             },
             config = utils.lsp_config_function
         }
@@ -82,8 +82,6 @@ local plugins = {
     "ThePrimeagen/vim-with-me",
     "ThePrimeagen/vim-be-good",
     "eandrju/cellular-automaton.nvim",
-    "vim-airline/vim-airline",
-    "vim-airline/vim-airline-themes",
     { "mg979/vim-visual-multi", branch = "master" },
     "andymass/vim-matchup",
     "RRethy/vim-illuminate",
@@ -122,13 +120,19 @@ local plugins = {
 
     -- These optional plugins should be loaded directly because of a bug in Packer lazy loading
     "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
-    "lewis6991/gitsigns.nvim",     -- OPTIONAL: for git status
-    "romgrk/barbar.nvim",          -- OPTIONAL: for buffer tabline
+    {
+        "lewis6991/gitsigns.nvim",
+    },
+    "romgrk/barbar.nvim", -- OPTIONAL: for buffer tabline
 
     "christoomey/vim-tmux-navigator",
     "petertriho/nvim-scrollbar",
     "zyedidia/vim-snake",
     "levouh/tint.nvim",
+    {
+        "folke/which-key.nvim",
+        lazy = true,
+    },
     "sharkdp/fd",
     {
         "linux-cultist/venv-selector.nvim",
@@ -140,13 +144,43 @@ local plugins = {
         },
     },
     {
-        'stevearc/oil.nvim',
+        "stevearc/oil.nvim",
         opts = {},
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     "github/copilot.vim",
-    "APZelos/blamer.nvim",
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons", opt = true }
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
+    {
+        "goolord/alpha-nvim",
+        lazy = true,
+    },
+    {
+        "windwp/nvim-autopairs"
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+    },
+
+    {
+        "HiPhish/nvim-ts-rainbow2",
+    },
 }
 
 local opts = {}
