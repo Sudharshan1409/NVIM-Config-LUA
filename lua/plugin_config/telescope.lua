@@ -5,6 +5,7 @@ local action_state = require('telescope.actions.state')
 --end)
 
 local custom_actions = {}
+require("telescope").load_extension("git_worktree")
 
 function custom_actions.fzf_multi_select(prompt_bufnr)
     local picker = action_state.get_current_picker(prompt_bufnr)

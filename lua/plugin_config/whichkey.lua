@@ -14,13 +14,14 @@ local setup = {
         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
         -- No actual key bindings are created
         presets = {
-            operators = false,   -- adds help for operators like d, y, ... and registers them for motion / text object completion
-            motions = true,      -- adds help for motions
-            text_objects = true, -- help for text objects triggered after entering an operator
-            windows = true,      -- default bindings on <c-w>
-            nav = true,          -- misc bindings to work with windows
-            z = true,            -- bindings for folds, spelling and others prefixed with z
-            g = true,            -- bindings for prefixed with g
+            operators = false,       -- adds help for operators like d, y, ... and registers them for motion / text object completion
+            motions = true,          -- adds help for motions
+            text_objects = true,     -- help for text objects triggered after entering an operator
+            windows = true,          -- default bindings on <c-w>
+            nav = true,              -- misc bindings to work with windows
+            z = true,                -- bindings for folds, spelling and others prefixed with z
+            g = true,                -- bindings for prefixed with g
+            relative_numbers = true, -- bindings for prefixed with g
         },
     },
     -- add operators that will trigger motion and text object completion
@@ -69,26 +70,24 @@ local setup = {
     },
 }
 
-local opts = {
+local leader_opts = {
     mode = "n",     -- NORMAL mode
     prefix = "<leader>",
     buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
     silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
-    nowait = true,  -- use `nowait` when creating keymaps
 }
 
-local mappings = {
+local leader_mappings = {
 
     ["al"] = { "<cmd>Alpha<cr>", "Alpha" },
-    ["kl"] = { "<cmd>bdelete<CR>", "Kill Buffer" }, -- Close current file
     ["m"] = { "<cmd>Mason<CR>", "Mason" },          -- Mason UI for LSP Management
-    ["pk"] = { "<cmd>Lazy<CR>", "Plugin Manager" }, -- Invoking plugin manager
     ["q"] = { "<cmd>:q<CR>", "Quit Current" },      -- Quit Neovim after saving the file
+    ["pk"] = { "<cmd>Lazy<CR>", "Plugin Manager" }, -- Invoking plugin manager
+    ["kl"] = { "<cmd>bdelete<CR>", "Kill Buffer" }, -- Close current file
     ["qa"] = { "<cmd>wqall!<CR>", "Quit" },         -- Quit Neovim after saving the file
     ["r"] = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Reformat Code" },
     ["w"] = { "<cmd>w!<CR>", "Save" },              -- Save current file
-
 
     --Git
     g = {
@@ -110,6 +109,12 @@ local mappings = {
         d = {
             "<cmd>Gitsigns diffthis HEAD<cr>",
             "Diff",
+        },
+        w = {
+            name = "Git Worktree",
+            c = { "<cmd>lua CREATE_WORKTREE()<cr>", "Create Worktree" },
+            t = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Open Git Worktrees" },
+            l = { "<cmd>!git worktree list<cr>", "List Git Worktrees" },
         },
     },
 
@@ -137,15 +142,6 @@ local mappings = {
         r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     },
 
-    s = {
-        name = "Search",
-        h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-        m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        r = { "<cmd>Telescope registers<cr>", "Registers" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        c = { "<cmd>Telescope commands<cr>", "Commands" },
-    },
-
     --ToggleTerm
     t = {
         name = "Terminal",
@@ -159,5 +155,7 @@ local mappings = {
 
 }
 
+local remap_mappings = {}
+
 which_key.setup(setup)
-which_key.register(mappings, opts)
+which_key.register(leader_mappings, leader_opts)

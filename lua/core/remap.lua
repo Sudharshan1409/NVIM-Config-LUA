@@ -1,31 +1,30 @@
 local keymap = vim.keymap.set
 
+local opts = { noremap = true, silent = true }
+
 vim.g.mapleader = " "
-keymap("n", "<leader>ft", "<cmd>Oil --float<CR>", { desc = "Open parent directory" })
 
 keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("v", "K", ":m '<-2<CR>gv=gv")
 
 --split navigations
-keymap("n", "<C-j>", "TmuxNavigateDown")
-keymap("n", "<C-k>", "TmuxNavigateUp")
-keymap("n", "<C-l>", "TmuxNavigateRight")
-keymap("n", "<C-h>", "TmuxNavigateLeft")
+keymap("n", "<C-j>", "TmuxNavigateDown", { desc = "Navigate Window Down" })
+keymap("n", "<C-k>", "TmuxNavigateUp", { desc = "Navigate Window Up" })
+keymap("n", "<C-l>", "TmuxNavigateRight", { desc = "Navigate Window Right" })
+keymap("n", "<C-h>", "TmuxNavigateLeft", { desc = "Navigate Window Left" })
 
-local opts = { noremap = true, silent = true }
-
-
-keymap("n", "J", "mzJ`z")
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
-keymap("n", "n", "nzzzv")
-keymap("n", "N", "Nzzzv")
+keymap("n", "J", "mzJ`z", { desc = "Keep cursor in the beginning when joining lines" })
+keymap("n", "<C-d>", "<C-d>zz", { desc = "Keep line in the middle when scrolling down" })
+keymap("n", "<C-u>", "<C-u>zz", { desc = "Keep line in the middle when scrolling up" })
+keymap("n", "n", "nzzzv", { desc = "Keep line in the middle when searching next" })
+keymap("n", "N", "Nzzzv", { desc = "Keep line in the middle when searching previous" })
 
 -- keymap to create buffer and open file
-keymap("n", "<leader>fo", "<cmd>e hello.txt<CR>", { silent = true })
+keymap("n", "<leader>fo", "<cmd>e hello.txt<CR>", { silent = true, desc = "Open buffer for reference" })
 
 -- greatest remap ever
-keymap("x", "<leader>p", [["_dP]])
+keymap("x", "<leader>p", [["_dPgv=gv]],
+    { silent = true, desc = "While pasting in visual mode retain copied content at top of register" })
 keymap("n", "<leader>p", [["+p]])
 keymap("n", "<leader>P", [["+P]])
 
@@ -68,11 +67,6 @@ keymap("n", "<leader>sf", "<cmd>e ~/.config/nvim/lua/core/set.lua<CR>");
 keymap("n", "<leader>vsf", "<cmd>vs ~/.config/nvim/lua/core/set.lua<CR>");
 keymap("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/core/set.lua<CR>");
 
--- open telescope file anywhere
-keymap("n", "<leader>tf", "<cmd>e ~/.config/nvim/after/plugin/telescope.lua<CR>");
-keymap("n", "<leader>vtf", "<cmd>vs ~/.config/nvim/after/plugin/telescope.lua<CR>");
-keymap("n", "<leader>htf", "<cmd>sp ~/.config/nvim/after/plugin/telescope.lua<CR>");
-
 -- open terminal in splits
 keymap("n", "<leader>vt", "<cmd>100 vs | term<CR>");
 keymap("n", "<leader>ht", "<cmd>sp | term<CR>");
@@ -88,9 +82,6 @@ keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- Move to previous/next
 keymap('n', '<s-tab>', '<Cmd>BufferPrevious<CR>', opts)
 keymap('n', '<tab>', '<Cmd>BufferNext<CR>', opts)
-
-keymap("n", "<a-j>", "<esc>:m .+1<cr>==gi", opts) -- Alt-j
-keymap("n", "<a-k>", "<esc>:m .-2<cr>==gi", opts) -- Alt-k
 
 keymap("i", "jk", "<esc>", opts)
 keymap("i", "kj", "<esc>", opts)
