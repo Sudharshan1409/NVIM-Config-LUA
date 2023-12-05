@@ -52,9 +52,12 @@ require('telescope').setup {
     }
 }
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find Files" })
+vim.keymap.set('n', '<leader>ft', "<cmd>lua vim.cmd('Oil ' .. vim.fn.getcwd())<cr>",
+    { desc = "Open Tree in Root Project Directory" })
+vim.keymap.set('n', '<leader>fr', "<cmd>Telescope oldfiles<cr>", { desc = "Recent Files" })
+vim.keymap.set('n', '<leader>fs', builtin.live_grep, { desc = "GREP Search" })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find Buffers" })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Telescope Help" })
+vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Find Git Files" })
+vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Find Keymaps" })

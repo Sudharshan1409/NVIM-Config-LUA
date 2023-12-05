@@ -16,6 +16,8 @@ keymap("n", "<C-h>", "TmuxNavigateLeft", { desc = "Navigate Window Left" })
 keymap("n", "J", "mzJ`z", { desc = "Keep cursor in the beginning when joining lines" })
 keymap("n", "<C-d>", "<C-d>zz", { desc = "Keep line in the middle when scrolling down" })
 keymap("n", "<C-u>", "<C-u>zz", { desc = "Keep line in the middle when scrolling up" })
+keymap("i", "<C-j>", "<Down><Down><Down><Down><Down>", { desc = "Move cursor 5 lines down" })
+keymap("i", "<C-k>", "<Up><Up><Up><Up><Up>", { desc = "Move cursor 5 lines up" })
 keymap("n", "n", "nzzzv", { desc = "Keep line in the middle when searching next" })
 keymap("n", "N", "Nzzzv", { desc = "Keep line in the middle when searching previous" })
 
@@ -25,58 +27,42 @@ keymap("n", "<leader>fo", "<cmd>e hello.txt<CR>", { silent = true, desc = "Open 
 -- greatest remap ever
 keymap("x", "<leader>p", [["_dPgv=gv]],
     { silent = true, desc = "While pasting in visual mode retain copied content at top of register" })
-keymap("n", "<leader>p", [["+p]])
-keymap("n", "<leader>P", [["+P]])
+keymap("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard down" })
+keymap("n", "<leader>P", [["+P]], { desc = "Paste from system clipboard up" })
 
 -- next greatest remap ever : asbjornHaland
-keymap({ "n", "v" }, "<leader>y", [["+y]])
-keymap("n", "<leader>Y", [["+Y]])
+keymap({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
+keymap("n", "<leader>Y", [["+Y]], { desc = "Copy to system clipboard" })
 
-keymap({ "n", "v" }, "<leader>d", [["_d]])
+keymap({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to blackhole register" })
 
 -- This is going to get me cancelled
-keymap("i", "<C-c>", "<Esc>")
+keymap("i", "<C-c>", "<Esc>", { desc = "Exit insert mode" })
 
-keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux sessionizer" })
 
 -- insert a line without going to insert mode
-keymap("n", "<leader>o", "o<Esc>")
-keymap("n", "<leader>O", "O<Esc>")
+keymap("n", "<leader>o", "o<Esc>", { desc = "Insert line below and stay in normal mode" })
+keymap("n", "<leader>O", "O<Esc>", { desc = "Insert line above and stay in normal mode" })
 
-keymap("n", "<leader>k", "<cmd>cnext<CR>zz")
-keymap("n", "<leader>j", "<cmd>cprev<CR>zz")
+keymap("n", "<leader>k", "<cmd>cnext<CR>zz", { desc = "Go to next quickfix" })
+keymap("n", "<leader>j", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix" })
 
-keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-keymap("v", "<leader>s", [[:'<,'>s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-keymap("n", "<leader>sl", ":lua SEARCH_AND_REPLACE_DYNAMIC()<CR>")
+keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace" })
+keymap("n", "<leader>sl", ":lua SEARCH_AND_REPLACE_DYNAMIC()<CR>", { desc = "Search and replace for N lines" })
 
-keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }) -- make file executable
+keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" }) -- make file executable
 
--- open packer file anywhere
-keymap("n", "<leader>pf", "<cmd>e ~/.config/nvim/lua/core/plugins.lua<CR>");
-keymap("n", "<leader>vpf", "<cmd>vs ~/.config/nvim/lua/core/plugins.lua<CR>");
-keymap("n", "<leader>hpf", "<cmd>sp ~/.config/nvim/lua/core/plugins.lua<CR>");
-
--- open remap file anywhere
-keymap("n", "<leader>rf", "<cmd>e ~/.config/nvim/lua/core/remap.lua<CR>");
-keymap("n", "<leader>vrf", "<cmd>vs ~/.config/nvim/lua/core/remap.lua<CR>");
-keymap("n", "<leader>hrf", "<cmd>sp ~/.config/nvim/lua/core/remap.lua<CR>");
-
--- open set file anywhere
-keymap("n", "<leader>sf", "<cmd>e ~/.config/nvim/lua/core/set.lua<CR>");
-keymap("n", "<leader>vsf", "<cmd>vs ~/.config/nvim/lua/core/set.lua<CR>");
-keymap("n", "<leader>hsf", "<cmd>sp ~/.config/nvim/lua/core/set.lua<CR>");
-
--- open terminal in splits
-keymap("n", "<leader>vt", "<cmd>100 vs | term<CR>");
-keymap("n", "<leader>ht", "<cmd>sp | term<CR>");
+keymap({ "n", "x" }, "<leader>r", "<cmd>lua vim.lsp.buf.format{async=true}<cr>",
+    { desc = "Reformat Code", silent = true })
 
 -- open nvim file in popup
 keymap("n", "<leader>nvim",
-    "<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>");
+    "<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>",
+    { desc = "Open Nvim Config" });
 
 -- oil.nvim shortcuts
-keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+keymap("n", "-", "<CMD>Oil<CR>", { desc = "OIL: Open parent directory" })
 
 -- barbar config
 -- Move to previous/next
@@ -120,6 +106,11 @@ end)
 keymap("n", "<leader>W", function()
     vim.cmd("wa")
 end)
+
+keymap("n", "<leader>w", function()
+    vim.cmd("w")
+end)
+keymap("n", "<leader>q", "<cmd>:q<CR>", { silent = true, desc = "Quit NeoVim Session" }) -- Quit Neovim after saving the file
 
 keymap("n", "<leader>Q", function()
     vim.cmd("qa")

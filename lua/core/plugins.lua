@@ -129,10 +129,6 @@ local plugins = {
     "petertriho/nvim-scrollbar",
     "zyedidia/vim-snake",
     "levouh/tint.nvim",
-    {
-        "folke/which-key.nvim",
-        lazy = true,
-    },
     "sharkdp/fd",
     {
         "linux-cultist/venv-selector.nvim",
@@ -153,23 +149,6 @@ local plugins = {
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons", opt = true }
-    },
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        }
-    },
-    {
-        "goolord/alpha-nvim",
-        lazy = true,
     },
     {
         "windwp/nvim-autopairs"
@@ -199,10 +178,19 @@ local plugins = {
         opts = {
             -- configurations go here
         },
+    },
+    {
+        'Wansmer/treesj',
+        keys = { "<leader>m", "<CMD>TSJToggle<CR>", desc = "Toggle treesitter highlight" },
+        cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        opts = { use_default_keybindings = false },
+        config = function()
+            require('treesj').setup()
+        end,
     }
 }
 
 local opts = {}
 
 require("lazy").setup(plugins, opts)
-

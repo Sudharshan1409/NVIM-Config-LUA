@@ -1,3 +1,12 @@
+local function addDesc(tbl, desc)
+    local merged = {} -- Create a new table to hold the merged result
+    for k, v in pairs(tbl) do
+        merged[k] = v -- Copy elements from tbl1 to the merged table
+    end
+    merged.desc = desc
+    return merged -- Return the merged table
+end
+
 local yamlls_setup = {
     cmd = { "yaml-language-server", "--stdio" },
     filetypes = { "yaml", "yml", "yaml.docker-compose" },
@@ -123,6 +132,7 @@ local ensure_installed = {
     'yamlls',
     'cssls',
     'graphql',
+    'autopep8',
 }
 
 local cmp_config_function = function()
@@ -172,13 +182,15 @@ local lsp_config_function = function()
     lsp_zero.extend_lspconfig()
     lsp_zero.set_preferences({
         suggest_lsp_servers = true,
-        sign_icons = {
-            error = 'E',
-            warn = 'W',
-            hint = 'H',
-            info = 'I'
-        }
     })
+
+    local sign_icons = {
+        error = '✘',
+        warn = '▲',
+        hint = '⚑',
+        info = '»'
+    }
+    lsp_zero.set_sign_icons(sign_icons)
 
     lsp_zero.format_on_save({
         format_opts = {
@@ -208,17 +220,19 @@ local lsp_config_function = function()
         -- to learn the available actions
 
         local opts = { buffer = bufnr, remap = false }
+        local keymap = vim.keymap.set
 
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>skw", function() vim.lsp.buf.workspace_symbol() end, opts)
-        vim.keymap.set("n", "<leader>ed", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "[", function() vim.diagnostic.goto_prev() end, opts)
-        vim.keymap.set("n", "]", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>gr", function() vim.lsp.buf.references() end, opts)
-        vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+        keymap("n", "gd", function() vim.lsp.buf.definition() end, addDesc(opts, "LSP: Go to definition"))
+        keymap("n", "K", function() vim.lsp.buf.hover() end, addDesc(opts, "LSP: Show hover"))
+        keymap("n", "<leader>skw", function() vim.lsp.buf.workspace_symbol() end,
+            addDesc(opts, "LSP: Search workspace symbols"))
+        keymap("n", "gl", function() vim.diagnostic.open_float() end, addDesc(opts, "LSP: Open error in float"))
+        keymap("n", "[", function() vim.diagnostic.goto_prev() end, addDesc(opts, "LSP: Go to previous error"))
+        keymap("n", "]", function() vim.diagnostic.goto_next() end, addDesc(opts, "LSP: Go to next error"))
+        keymap("n", "<leader>ca", function() vim.lsp.buf.code_action() end, addDesc(opts, "LSP: Code action"))
+        keymap("n", "<leader>gr", function() vim.lsp.buf.references() end, addDesc(opts, "LSP: Find references"))
+        keymap("n", "<leader>rn", function() vim.lsp.buf.rename() end, addDesc(opts, "LSP: Rename symbol"))
+        keymap("i", "<C-h>", function() vim.lsp.buf.signature_help() end, addDesc(opts, "LSP: Signature help"))
         lsp_zero.default_keymaps({ buffer = bufnr })
     end)
 
