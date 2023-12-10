@@ -188,6 +188,20 @@ local plugins = {
         config = function()
             require('treesj').setup()
         end,
+    },
+    {
+        "simrat39/symbols-outline.nvim",
+        config = function()
+            require(
+                "symbols-outline"
+            ).setup(utils.symbols_opts)
+        end,
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
     }
 }
 

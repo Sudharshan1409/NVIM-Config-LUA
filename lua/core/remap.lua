@@ -1,11 +1,12 @@
 local keymap = vim.keymap.set
+local utils = require("core.utils")
 
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
 
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line up/down in visual mode" })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up/down in visual mode" })
 
 --split navigations
 keymap("n", "<C-j>", "TmuxNavigateDown", { desc = "Navigate Window Down" })
@@ -36,9 +37,6 @@ keymap("n", "<leader>Y", [["+Y]], { desc = "Copy to system clipboard" })
 
 keymap({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to blackhole register" })
 
--- This is going to get me cancelled
-keymap("i", "<C-c>", "<Esc>", { desc = "Exit insert mode" })
-
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux sessionizer" })
 
 -- insert a line without going to insert mode
@@ -50,6 +48,8 @@ keymap("n", "<leader>j", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix" 
 
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace" })
 keymap("n", "<leader>sl", ":lua SEARCH_AND_REPLACE_DYNAMIC()<CR>", { desc = "Search and replace for N lines" })
+keymap("n", "<leader>sn", "/<C-r><C-w><cr>", { desc = "Search and replace" })
+keymap("n", "<leader>sp", "?<C-r><C-w><cr>", { desc = "Search and replace" })
 
 keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" }) -- make file executable
 
@@ -66,29 +66,31 @@ keymap("n", "-", "<CMD>Oil<CR>", { desc = "OIL: Open parent directory" })
 
 -- barbar config
 -- Move to previous/next
-keymap('n', '<s-tab>', '<Cmd>BufferPrevious<CR>', opts)
-keymap('n', '<tab>', '<Cmd>BufferNext<CR>', opts)
+keymap('n', '<s-tab>', '<Cmd>BufferPrevious<CR>', utils.addDesc(opts, "Go to Previous Buffer"))
+keymap('n', '<tab>', '<Cmd>BufferNext<CR>', utils.addDesc(opts, "Go to Next Buffer"))
 
-keymap("i", "jk", "<esc>", opts)
-keymap("i", "kj", "<esc>", opts)
+keymap("i", "jk", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
+keymap("i", "kj", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 
-keymap("v", "<", "<gv", opts) -- Right Indentation
-keymap("v", ">", ">gv", opts) -- Left Indentation
+keymap("v", "<", "<gv", utils.addDesc(opts, "Right Indent but stay in visual mode")) -- Right Indentation
+keymap("v", ">", ">gv", utils.addDesc(opts, "Left Indent but stay in visual mode"))  -- Left Indentation
 
 -- Pin the buffer
-keymap('n', '<leader>pb', '<Cmd>BufferPin<CR>', opts)
+keymap('n', '<leader>pb', '<Cmd>BufferPin<CR>', utils.addDesc(opts, "Pin Buffer"))
 
 -- Close all buffer except pinned
-keymap('n', '<leader>bcp', '<Cmd>BufferCloseAllButPinned<CR>', opts)
+keymap('n', '<leader>bcp', '<Cmd>BufferCloseAllButPinned<CR>', utils.addDesc(opts, "Close all buffer except pinned"))
 
 -- Close all buffer except current
-keymap('n', '<leader>bc', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
+keymap('n', '<leader>bc', '<Cmd>BufferCloseAllButCurrent<CR>', utils.addDesc(opts, "Close all buffer except current"))
 
 -- Re-order to previous/next
-keymap('n', '<leader>bp', '<Cmd>BufferPick<CR>', opts)
+keymap('n', '<leader>bp', '<Cmd>BufferPick<CR>', utils.addDesc(opts, "Pick Buffer"))
+
+keymap('n', 'zs', '<Cmd>SymbolsOutline<CR>', utils.addDesc(opts, "Open Symbols Outline"))
 
 -- Close buffer
-vim.api.nvim_set_keymap('n', '<leader>cb', '<Cmd>BufferClose<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>cb', '<Cmd>BufferClose<CR>', utils.addDesc(opts, "Close Buffer"))
 
 -- Replace ' by " in entire file
 keymap("n", "<leader>std", ":%s/'/\"/g<CR>")
