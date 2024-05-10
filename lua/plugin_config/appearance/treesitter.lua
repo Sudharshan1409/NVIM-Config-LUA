@@ -19,6 +19,7 @@ require 'nvim-treesitter.configs'.setup {
         "rust",
         "toml",
         "regex",
+        "tsx",
         "htmldjango"
     },
 
@@ -35,9 +36,11 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
         additional_vim_regex_highlighting = true,
     },
+
     indent = {
         enable = true
     },
+
     rainbow = {
         enable = true,
         -- list of languages you want to disable the plugin for

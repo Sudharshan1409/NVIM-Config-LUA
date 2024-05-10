@@ -7,6 +7,33 @@ local function addDesc(tbl, desc)
     return merged -- Return the merged table
 end
 
+local pylsp_setup = {
+    settings = {
+        pylsp = {
+            plugins = {
+                -- formatter options
+                black = { enabled = true },
+                autopep8 = { enabled = true },
+                yapf = { enabled = false },
+                -- linter options
+                -- pylint = { enabled = true, executable = "pylint" },
+                pyflakes = { enabled = false },
+                pycodestyle = {
+                    enabled = true,
+                    ignore = { 'W391' },
+                    maxLineLength = 120,
+                },
+                -- type checker
+                pylsp_mypy = { enabled = true },
+                -- auto-completion options
+                jedi_completion = { fuzzy = true },
+                -- import sorting
+                pyls_isort = { enabled = true },
+            },
+        }
+    }
+}
+
 local yamlls_setup = {
     cmd = { "yaml-language-server", "--stdio" },
     filetypes = { "yaml", "yml", "yaml.docker-compose" },
@@ -119,7 +146,6 @@ local yamlls_setup = {
 local ensure_installed = {
     'tsserver',
     'eslint',
-    'pyright',
     'pylsp',
     'ruff_lsp',
     'lua_ls',
@@ -206,7 +232,6 @@ local lsp_config_function = function()
             ['html'] = { 'html' },
             ['cssls'] = { 'css' },
             ['graphql'] = { 'graphql' },
-            ['pyright'] = { 'python' },
             ['vimls'] = { 'vim' },
             ['dockerls'] = { 'dockerfile' },
             ['bashls'] = { 'bash' },
@@ -245,6 +270,7 @@ local lsp_config_function = function()
                 require('lspconfig').lua_ls.setup(lua_opts)
                 require('lspconfig').yamlls.setup(yamlls_setup)
                 require('lspconfig').docker_compose_language_service.setup(yamlls_setup)
+                require('lspconfig').pylsp.setup(pylsp_setup)
             end,
         }
     })

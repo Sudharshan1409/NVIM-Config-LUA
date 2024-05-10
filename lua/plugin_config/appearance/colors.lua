@@ -6,7 +6,7 @@ function ChangeTheme(color)
         "onedark",
         "dracula-soft",
     }
-    color = color or "tokyonight-moon"
+    color = color or "tokyonight"
     vim.cmd('colorscheme ' .. color)
 
     local normal_hl = vim.api.nvim_get_hl_by_name('Normal', true)

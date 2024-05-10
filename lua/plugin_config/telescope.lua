@@ -6,6 +6,7 @@ local action_state = require('telescope.actions.state')
 
 local custom_actions = {}
 require("telescope").load_extension("git_worktree")
+require("telescope").load_extension("harpoon")
 
 function custom_actions.fzf_multi_select(prompt_bufnr)
     local picker = action_state.get_current_picker(prompt_bufnr)
@@ -58,6 +59,6 @@ vim.keymap.set('n', '<leader>ft', "<cmd>lua vim.cmd('Oil ' .. vim.fn.getcwd())<c
 vim.keymap.set('n', '<leader>fr', "<cmd>Telescope oldfiles<cr>", { desc = "Recent Files" })
 vim.keymap.set('n', '<leader>fs', builtin.live_grep, { desc = "GREP Search" })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find Buffers" })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Telescope Help" })
+vim.keymap.set('n', '<leader>fh', "<cmd>Telescope harpoon marks<cr>", { desc = "Harpoone Marks" })
 vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Find Git Files" })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Find Keymaps" })

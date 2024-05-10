@@ -160,6 +160,7 @@ local plugins = {
     {
         "HiPhish/nvim-ts-rainbow2",
     },
+    "alvan/vim-closetag",
     "ThePrimeagen/git-worktree.nvim",
     {
         'anuvyklack/pretty-fold.nvim',
@@ -202,6 +203,10 @@ local plugins = {
         lazy = false,
         priority = 1000,
         opts = {},
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
     }
 }
 

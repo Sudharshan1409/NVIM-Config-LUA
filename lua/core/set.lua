@@ -38,10 +38,23 @@ opt.isfname:append("@-@")
 
 opt.updatetime = 50
 opt.cursorline = true
+opt.foldmethod = "indent"
+opt.foldlevel = 99
+opt.foldenable = false
+opt.foldcolumn = "1"
 
 vim.g["netrw_localrmdir"] = "rm -r"
 -- Set the escape sequence to change the cursor to a line cursor in insert mode
 vim.api.nvim_command('let &t_SI = "\\e[6 q"')
+
+vim.api.nvim_create_augroup("custom_buffer", { clear = true })
+
+-- highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = "custom_buffer",
+    pattern = "*",
+    callback = function() vim.highlight.on_yank { timeout = 200 } end
+})
 
 vim.api.nvim_exec([[
 augroup Mkdir

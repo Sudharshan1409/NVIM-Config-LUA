@@ -1,4 +1,5 @@
 local keymap = vim.keymap.set
+
 local utils = require("core.utils")
 
 local opts = { noremap = true, silent = true }
@@ -106,11 +107,11 @@ keymap("n", "<leader><leader>", function()
 end)
 
 keymap("n", "<leader>W", function()
-    vim.cmd("wa")
+    vim.cmd("wa!")
 end)
 
 keymap("n", "<leader>w", function()
-    vim.cmd("w")
+    vim.cmd("w!")
 end)
 keymap("n", "<leader>q", "<cmd>:q<CR>", { silent = true, desc = "Quit NeoVim Session" }) -- Quit Neovim after saving the file
 
