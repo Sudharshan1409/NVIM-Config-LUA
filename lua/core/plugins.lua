@@ -20,6 +20,7 @@ local plugins = {
         build = ":TSUpdate",
     },
     "nvim-treesitter/playground",
+    "nvim-lua/plenary.nvim",
     "theprimeagen/harpoon",
     "mbbill/undotree",
     "tpope/vim-fugitive",
@@ -91,20 +92,6 @@ local plugins = {
     "ericbn/vim-relativize",
     "LaurenceWarne/cfn-lsp-extra",
     "chase/vim-ansible-yaml",
-    {
-        "jackMort/ChatGPT.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("chatgpt").setup({
-                api_key_cmd = "pass show api/token/openai",
-            })
-        end,
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
-        }
-    },
     "ggandor/lightspeed.nvim",
     "tpope/vim-commentary",
     "ryanoasis/vim-devicons",
