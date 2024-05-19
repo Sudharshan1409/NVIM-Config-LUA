@@ -72,9 +72,10 @@ keymap('n', '<tab>', '<Cmd>BufferNext<CR>', utils.addDesc(opts, "Go to Next Buff
 
 keymap("i", "jk", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 keymap("i", "kj", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
+keymap("i", "JK", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
+keymap("i", "KJ", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 
-keymap("v", "<", "<gv", utils.addDesc(opts, "Right Indent but stay in visual mode")) -- Right Indentation
-keymap("v", ">", ">gv", utils.addDesc(opts, "Left Indent but stay in visual mode"))  -- Left Indentation
+keymap("v", ">", ">gv", utils.addDesc(opts, "Left Indent but stay in visual mode")) -- Left Indentation
 
 -- Pin the buffer
 keymap('n', '<leader>pb', '<Cmd>BufferPin<CR>', utils.addDesc(opts, "Pin Buffer"))
