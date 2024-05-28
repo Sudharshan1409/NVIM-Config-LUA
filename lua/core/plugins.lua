@@ -77,6 +77,12 @@ local plugins = {
             })
         end
     },
+    {
+        "meatballs/notebook.nvim",
+        config = function()
+            require("notebook").setup()
+        end
+    },
     "neovim/nvim-lspconfig",
     "jose-elias-alvarez/null-ls.nvim",
     "MunifTanjim/prettier.nvim",
@@ -174,7 +180,9 @@ local plugins = {
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         opts = { use_default_keybindings = false },
         config = function()
-            require('treesj').setup()
+            require('treesj').setup({
+                max_join_length = 5000
+            })
         end,
     },
     {

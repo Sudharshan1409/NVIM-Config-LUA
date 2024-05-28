@@ -65,6 +65,17 @@ keymap("n", "<leader>nvim",
 -- oil.nvim shortcuts
 keymap("n", "-", "<CMD>Oil<CR>", { desc = "OIL: Open parent directory" })
 
+-- url supports
+keymap("n", "ci/", "T/vt/c", { desc = "Change inside URL Slash" })
+keymap("n", "vi/", "T/vt/", { desc = "Select inside URL Slash" })
+keymap("n", "di/", "T/vt/d", { desc = "Delete inside URL Slash" })
+keymap("n", "yi/", "T/vt/y", { desc = "Copy inside URL Slash" })
+
+keymap("n", "ca/", "T/vf/c", { desc = "Change inside URL Slach with Slach" })
+keymap("n", "va/", "T/vf/", { desc = "Select inside URL Slash with Slach" })
+keymap("n", "da/", "T/vf/d", { desc = "Delete inside URL Slash with Slach" })
+keymap("n", "ya/", "T/vf/y", { desc = "Copy inside URL Slash with Slach" })
+
 -- barbar config
 -- Move to previous/next
 keymap('n', '<s-tab>', '<Cmd>BufferPrevious<CR>', utils.addDesc(opts, "Go to Previous Buffer"))
