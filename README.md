@@ -19,6 +19,7 @@ Ensure you have the following software installed on your system:
 
    ```sh
    git clone https://github.com/Sudharshan1409/NVIM-Config-LUA.git ~/.config/nvim
+   ```
 
    For SSH
    
