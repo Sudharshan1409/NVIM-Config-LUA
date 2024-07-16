@@ -1,7 +1,6 @@
 function ChangeTheme(color)
     local colors = {
         "gruvbox",
-        "rose-pine",
         "nord",
         "onedark",
         "dracula-soft",
