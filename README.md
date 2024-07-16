@@ -86,7 +86,6 @@ Ensure you have the following software installed on your system:
     │       │   ├── illuminate.lua
     │       │   ├── init.lua
     │       │   ├── lualine.lua
-    │       │   ├── tint.lua
     │       │   ├── treesitter.lua
     │       ├── code-helpers                    # Helpers for better coding experience
     │       │   ├── auto-pairs-config.lua
