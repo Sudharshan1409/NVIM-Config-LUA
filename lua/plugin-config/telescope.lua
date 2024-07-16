@@ -23,6 +23,7 @@ function custom_actions.fzf_multi_select(prompt_bufnr)
 end
 
 -- Function to read .telescopeignore
+-- Function to read .telescopeignore
 local function read_telescopeignore()
     local ignore_patterns = {}
     local cwd = vim.loop.cwd()
@@ -30,13 +31,16 @@ local function read_telescopeignore()
 
     if path:exists() and path:is_file() then
         for line in io.lines(path:absolute()) do
-            table.insert(ignore_patterns, line)
+            -- Escape special characters for pattern matching
+            line = line:gsub("[%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%1")
+            table.insert(ignore_patterns, "^" .. line .. "$") -- Anchor patterns to match the whole name
         end
         return ignore_patterns
     else
         return nil
     end
 end
+
 
 local function update_file_ignore_patterns()
     local ignore_patterns = read_telescopeignore()

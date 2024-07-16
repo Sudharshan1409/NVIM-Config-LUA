@@ -1,7 +1,0 @@
-require("plugin_config.code-helpers.auto-pairs-config")
-require("plugin_config.code-helpers.harpoon")
-require("plugin_config.code-helpers.undotree")
-require("plugin_config.code-helpers.indent-line-config")
-require("plugin_config.code-helpers.venv_selector")
-require("plugin_config.code-helpers.barbecue-config")
-require("plugin_config.code-helpers.filetype")

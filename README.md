@@ -79,7 +79,7 @@ Ensure you have the following software installed on your system:
     │   │   ├── remap.lua
     │   │   ├── set.lua
     │   │   ├── utils.lua
-    │   └── plugin_config                       # Plugin-specific configurations
+    │   └── plugin-config                       # Plugin-specific configurations
     │       ├── appearance                      # Appearance-related configurations
     │       │   ├── changes-in-files.lua
     │       │   ├── colors.lua

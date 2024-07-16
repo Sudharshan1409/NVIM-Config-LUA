@@ -42,10 +42,12 @@ opt.foldmethod = "indent"
 opt.foldlevel = 99
 opt.foldenable = false
 opt.foldcolumn = "1"
+opt.formatoptions:remove("r")
 
 vim.g["netrw_localrmdir"] = "rm -r"
 -- Set the escape sequence to change the cursor to a line cursor in insert mode
 vim.api.nvim_command('let &t_SI = "\\e[6 q"')
+vim.cmd [[autocmd FileType * set formatoptions-=ro]]
 
 vim.api.nvim_create_augroup("custom_buffer", { clear = true })
 

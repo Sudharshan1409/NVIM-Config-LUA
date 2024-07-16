@@ -104,7 +104,10 @@ local plugins = {
 
     -- themes
     "ellisonleao/gruvbox.nvim",
-    { "rose-pine/neovim",       as = "rose-pine" },
+    {
+        "rose-pine/neovim",
+        as = "rose-pine",
+    },
     "shaunsingh/nord.nvim",
     "navarasu/onedark.nvim",
     "Mofiqul/dracula.nvim",
@@ -113,10 +116,8 @@ local plugins = {
 
     -- These optional plugins should be loaded directly because of a bug in Packer lazy loading
     "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
-    {
-        "lewis6991/gitsigns.nvim",
-    },
-    "romgrk/barbar.nvim", -- OPTIONAL: for buffer tabline
+    "lewis6991/gitsigns.nvim",
+    "romgrk/barbar.nvim",          -- OPTIONAL: for buffer tabline
 
     "christoomey/vim-tmux-navigator",
     "petertriho/nvim-scrollbar",
@@ -125,11 +126,18 @@ local plugins = {
     "sharkdp/fd",
     {
         "linux-cultist/venv-selector.nvim",
-        dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
-        opts = {
-            -- Your options go here
-            -- name = "venv",
-            -- auto_refresh = false
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
+            { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+        },
+        lazy = false,
+        branch = "regexp", -- This is the regexp branch, use this for the new version
+        config = function()
+            require("venv-selector").setup()
+        end,
+        keys = {
+            { ",v", "<cmd>VenvSelect<cr>" },
         },
     },
     {
@@ -202,6 +210,17 @@ local plugins = {
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
+    },
+    {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+            "saadparwaiz1/cmp_luasnip",
+        },
+        build = "make install_jsregexp"
     }
 }
 

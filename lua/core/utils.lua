@@ -172,6 +172,7 @@ local cmp_config_function = function()
     cmp.setup({
         sources = {
             { name = 'nvim_lsp' },
+            { name = 'luasnip' },
         },
         mapping = {
             ['<C-y>'] = cmp.mapping.confirm({ select = false }),
