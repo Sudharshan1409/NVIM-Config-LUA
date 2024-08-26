@@ -103,6 +103,9 @@ keymap('n', '<leader>bp', '<Cmd>BufferPick<CR>', utils.addDesc(opts, "Pick Buffe
 
 keymap('n', 'zs', '<Cmd>SymbolsOutline<CR>', utils.addDesc(opts, "Open Symbols Outline"))
 
+-- Toggle Line Wrap
+keymap('n', '<leader>lw', '<Cmd>:lua ToggleLineWrap()<CR>', utils.addDesc(opts, "Toggle Line Wrap"))
+
 -- Close buffer
 vim.api.nvim_set_keymap('n', '<leader>cb', '<Cmd>BufferClose<CR>', utils.addDesc(opts, "Close Buffer"))
 

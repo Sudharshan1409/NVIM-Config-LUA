@@ -158,6 +158,7 @@ local ensure_installed = {
     'yamlls',
     'cssls',
     'graphql',
+    'csharp_ls'
 }
 
 local cmp_config_function = function()
@@ -345,6 +346,14 @@ local symbols_opts = {
     },
 }
 
+function ToggleLineWrap()
+    if vim.wo.wrap then
+        vim.wo.wrap = false
+    else
+        vim.wo.wrap = true
+    end
+end
+
 return {
     yamlls_setup = yamlls_setup,
     ensure_installed = ensure_installed,
@@ -352,4 +361,5 @@ return {
     lsp_config_function = lsp_config_function,
     symbols_opts = symbols_opts,
     addDesc = addDesc,
+    ToggleLineWrap = ToggleLineWrap,
 }

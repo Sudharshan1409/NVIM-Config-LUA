@@ -12,7 +12,8 @@ opt.expandtab = true
 opt.smartindent = true
 opt.autoindent = true
 
-opt.wrap = false
+opt.wrap = true
+opt.linebreak = true
 opt.splitbelow = true
 opt.splitright = true
 opt.swapfile = false

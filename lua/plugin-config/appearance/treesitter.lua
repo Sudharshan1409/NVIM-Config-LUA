@@ -20,7 +20,8 @@ require 'nvim-treesitter.configs'.setup {
         "toml",
         "regex",
         "tsx",
-        "htmldjango"
+        "htmldjango",
+        "c_sharp"
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -41,15 +42,18 @@ require 'nvim-treesitter.configs'.setup {
         enable = true
     },
 
-    rainbow = {
-        enable = true,
-        -- list of languages you want to disable the plugin for
-        -- disable = { "jsx", "cpp" },
-        -- Which query to use for finding delimiters
-        query = 'rainbow-parens',
-        -- Highlight the entire buffer all at once
-        strategy = require 'ts-rainbow.strategy.global',
-        -- Do not enable for files with more than n lines
-        max_file_lines = 3000
-    }
+    -- rainbow = {
+    --     enable = true,
+    --     -- list of languages you want to disable the plugin for
+    --     -- disable = { "jsx", "cpp" },
+    --     -- Which query to use for finding delimiters
+    --     query = 'rainbow-parens',
+    --     extend_mode = true,
+    --     -- Highlight the entire buffer all at once
+    --     strategy = require 'ts-rainbow.strategy.global',
+    --     -- Do not enable for files with more than n lines
+    --     max_file_lines = 3000
+    -- }
 }
+
+require 'nvim-treesitter.install'.compilers = { "gcc", "clang", "clan" }
