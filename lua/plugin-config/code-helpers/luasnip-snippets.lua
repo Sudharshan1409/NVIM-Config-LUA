@@ -72,6 +72,6 @@ ls.add_snippets('python', {
         t("def "), i(1, "name"), t("("), i(2, "args"), t("):"), i(0)
     }),
     s("afn", {
-        t("async def "), i(1, "name"), t("("), i(2, "args"), t("):"), i(0)
+        t("async def "), i(1, "name"), t("("), i(2, "args"), t("):\n"), i(0)
     }),
 })

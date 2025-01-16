@@ -21,7 +21,9 @@ require 'nvim-treesitter.configs'.setup {
         "regex",
         "tsx",
         "htmldjango",
-        "c_sharp"
+        "c_sharp",
+        "markdown",
+        "markdown_inline"
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)

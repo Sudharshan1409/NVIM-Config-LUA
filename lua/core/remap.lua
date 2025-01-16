@@ -42,8 +42,8 @@ keymap({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to blackhole registe
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux sessionizer" })
 
 -- insert a line without going to insert mode
-keymap("n", "<leader>o", "o<Esc>", { desc = "Insert line below and stay in normal mode" })
-keymap("n", "<leader>O", "O<Esc>", { desc = "Insert line above and stay in normal mode" })
+keymap("n", "<leader>o", "o<Esc>k", { desc = "Insert line below and stay in normal mode" })
+keymap("n", "<leader>O", "O<Esc>j", { desc = "Insert line above and stay in normal mode" })
 
 keymap("n", "<leader>k", "<cmd>cnext<CR>zz", { desc = "Go to next quickfix" })
 keymap("n", "<leader>j", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix" })

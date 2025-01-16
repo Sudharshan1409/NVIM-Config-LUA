@@ -99,7 +99,12 @@ local plugins = {
     "LaurenceWarne/cfn-lsp-extra",
     "chase/vim-ansible-yaml",
     "ggandor/lightspeed.nvim",
-    "tpope/vim-commentary",
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            -- add any options here
+        }
+    },
     "ryanoasis/vim-devicons",
 
     -- themes
@@ -146,7 +151,6 @@ local plugins = {
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
-    "github/copilot.vim",
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons", opt = true }
@@ -221,6 +225,25 @@ local plugins = {
             "saadparwaiz1/cmp_luasnip",
         },
         build = "make install_jsregexp"
+    },
+    -- lazy.nvim
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+            -- add any options here
+        },
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        }
+    },
+    {
+        { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
     }
 }
 
