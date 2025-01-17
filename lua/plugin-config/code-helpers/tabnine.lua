@@ -1,6 +1,6 @@
 require('tabnine').setup({
     disable_auto_comment = true,
-    accept_keymap = "<C-y>",
+    accept_keymap = "<tab>",
     dismiss_keymap = "<C-i>",
     debounce_ms = 800,
     suggestion_color = { gui = "#808080", cterm = 244 },
