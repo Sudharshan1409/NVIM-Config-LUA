@@ -144,10 +144,9 @@ local yamlls_setup = {
 }
 
 local ensure_installed = {
-    'tsserver',
+    'ts_ls',
     'eslint',
     'pylsp',
-    'ruff_lsp',
     'lua_ls',
     'marksman',
     'vimls',
@@ -158,7 +157,6 @@ local ensure_installed = {
     'yamlls',
     'cssls',
     'graphql',
-    'csharp_ls'
 }
 
 local cmp_config_function = function()
@@ -227,7 +225,7 @@ local lsp_config_function = function()
         servers = {
             ['lua_ls'] = { 'lua' },
             ['rust_analyzer'] = { 'rust' },
-            ['tsserver'] = { 'typescript' },
+            ['ts_ls'] = { 'typescript' },
             ['null-ls'] = { 'javascript', 'typescript', },
             ['yaml-language-server'] = { 'yaml', 'yml' },
             ['jsonls'] = { 'json' },
