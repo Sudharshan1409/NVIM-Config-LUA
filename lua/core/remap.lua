@@ -28,8 +28,12 @@ keymap("n", "N", "Nzzzv", { desc = "Keep line in the middle when searching previ
 keymap("n", "<leader>fo", "<cmd>e hello.txt<CR>", { silent = true, desc = "Open buffer for reference" })
 
 -- greatest remap ever
-keymap("x", "<leader>p", [["_dPgv=gv]],
-    { silent = true, desc = "While pasting in visual mode retain copied content at top of register" })
+keymap(
+	"x",
+	"<leader>p",
+	[["_dPgv=gv]],
+	{ silent = true, desc = "While pasting in visual mode retain copied content at top of register" }
+)
 keymap("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard down" })
 keymap("n", "<leader>P", [["+P]], { desc = "Paste from system clipboard up" })
 
@@ -55,13 +59,20 @@ keymap("n", "<leader>sp", "?<C-r><C-w><cr>", { desc = "Search and replace" })
 
 keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" }) -- make file executable
 
-keymap({ "n", "x" }, "<leader>r", "<cmd>lua vim.lsp.buf.format{async=true}<cr>",
-    { desc = "Reformat Code", silent = true })
+keymap(
+	{ "n", "x" },
+	"<leader>r",
+	"<cmd>lua vim.lsp.buf.format{async=true}<cr>",
+	{ desc = "Reformat Code", silent = true }
+)
 
 -- open nvim file in popup
-keymap("n", "<leader>nvim",
-    "<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>",
-    { desc = "Open Nvim Config" });
+keymap(
+	"n",
+	"<leader>nvim",
+	"<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>",
+	{ desc = "Open Nvim Config" }
+)
 
 -- oil.nvim shortcuts
 keymap("n", "-", "<CMD>Oil<CR>", { desc = "OIL: Open parent directory" })
@@ -79,8 +90,8 @@ keymap("n", "ya/", "T/vf/y", { desc = "Copy inside URL Slash with Slach" })
 
 -- barbar config
 -- Move to previous/next
-keymap('n', '<s-tab>', '<Cmd>BufferPrevious<CR>', utils.addDesc(opts, "Go to Previous Buffer"))
-keymap('n', '<tab>', '<Cmd>BufferNext<CR>', utils.addDesc(opts, "Go to Next Buffer"))
+keymap("n", "<s-tab>", "<Cmd>BufferPrevious<CR>", utils.addDesc(opts, "Go to Previous Buffer"))
+keymap("n", "<tab>", "<Cmd>BufferNext<CR>", utils.addDesc(opts, "Go to Next Buffer"))
 
 keymap("i", "jk", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 keymap("i", "kj", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
@@ -90,24 +101,24 @@ keymap("i", "KJ", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 keymap("v", ">", ">gv", utils.addDesc(opts, "Left Indent but stay in visual mode")) -- Left Indentation
 
 -- Pin the buffer
-keymap('n', '<leader>pb', '<Cmd>BufferPin<CR>', utils.addDesc(opts, "Pin Buffer"))
+keymap("n", "<leader>pb", "<Cmd>BufferPin<CR>", utils.addDesc(opts, "Pin Buffer"))
 
 -- Close all buffer except pinned
-keymap('n', '<leader>bcp', '<Cmd>BufferCloseAllButPinned<CR>', utils.addDesc(opts, "Close all buffer except pinned"))
+keymap("n", "<leader>bcp", "<Cmd>BufferCloseAllButPinned<CR>", utils.addDesc(opts, "Close all buffer except pinned"))
 
 -- Close all buffer except current
-keymap('n', '<leader>bc', '<Cmd>BufferCloseAllButCurrent<CR>', utils.addDesc(opts, "Close all buffer except current"))
+keymap("n", "<leader>bc", "<Cmd>BufferCloseAllButCurrent<CR>", utils.addDesc(opts, "Close all buffer except current"))
 
 -- Re-order to previous/next
-keymap('n', '<leader>bp', '<Cmd>BufferPick<CR>', utils.addDesc(opts, "Pick Buffer"))
+keymap("n", "<leader>bp", "<Cmd>BufferPick<CR>", utils.addDesc(opts, "Pick Buffer"))
 
-keymap('n', 'zs', '<Cmd>SymbolsOutline<CR>', utils.addDesc(opts, "Open Symbols Outline"))
+keymap("n", "zs", "<Cmd>SymbolsOutline<CR>", utils.addDesc(opts, "Open Symbols Outline"))
 
 -- Toggle Line Wrap
-keymap('n', '<leader>lw', '<Cmd>:lua ToggleLineWrap()<CR>', utils.addDesc(opts, "Toggle Line Wrap"))
+keymap("n", "<leader>lw", "<Cmd>:lua ToggleLineWrap()<CR>", utils.addDesc(opts, "Toggle Line Wrap"))
 
 -- Close buffer
-vim.api.nvim_set_keymap('n', '<leader>cb', '<Cmd>BufferClose<CR>', utils.addDesc(opts, "Close Buffer"))
+vim.api.nvim_set_keymap("n", "<leader>cb", "<Cmd>BufferClose<CR>", utils.addDesc(opts, "Close Buffer"))
 
 -- Replace ' by " in entire file
 keymap("n", "<leader>std", ":%s/'/\"/g<CR>")
@@ -119,18 +130,18 @@ keymap("n", "<leader>dts", ":%s/\"/'/g<CR>")
 keymap("t", "<C-q>", "<C-\\><C-n>")
 
 keymap("n", "<leader><leader>", function()
-    vim.cmd("so")
+	vim.cmd("so")
 end)
 
 keymap("n", "<leader>W", function()
-    vim.cmd("wa!")
+	vim.cmd("wa!")
 end)
 
 keymap("n", "<leader>w", function()
-    vim.cmd("w!")
+	vim.cmd("w!")
 end)
 keymap("n", "<leader>q", "<cmd>:q<CR>", { silent = true, desc = "Quit NeoVim Session" }) -- Quit Neovim after saving the file
 
 keymap("n", "<leader>Q", function()
-    vim.cmd("qa")
+	vim.cmd("qa")
 end)

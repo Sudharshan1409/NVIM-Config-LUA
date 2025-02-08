@@ -1,5 +1,5 @@
 require("core.remap")
 require("core.set")
-require("core.plugins")
 require("core.git_config")
 require("core.functions")
+require("core.plugins")
