@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 local opt = vim.opt
 
 opt.nu = true
@@ -48,20 +49,25 @@ opt.formatoptions:remove("r")
 vim.g["netrw_localrmdir"] = "rm -r"
 -- Set the escape sequence to change the cursor to a line cursor in insert mode
 vim.api.nvim_command('let &t_SI = "\\e[6 q"')
-vim.cmd [[autocmd FileType * set formatoptions-=ro]]
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
 vim.api.nvim_create_augroup("custom_buffer", { clear = true })
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = "custom_buffer",
-    pattern = "*",
-    callback = function() vim.highlight.on_yank { timeout = 200 } end
+	group = "custom_buffer",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ timeout = 200 })
+	end,
 })
 
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
 augroup Mkdir
   autocmd!
   autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
 augroup END
-]], false)
+]],
+	false
+)

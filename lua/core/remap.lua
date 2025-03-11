@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 local keymap = vim.keymap.set
 
 local utils = require("core.utils")
