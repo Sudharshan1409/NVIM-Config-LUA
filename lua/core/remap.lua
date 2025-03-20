@@ -1,21 +1,22 @@
 -- luacheck: globals vim
+-- Keymap setup
 local keymap = vim.keymap.set
 
 local utils = require("core.utils")
 
 local opts = { noremap = true, silent = true }
 
-vim.g.mapleader = " "
-
+-- Visual Mode Keymaps
 keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line up/down in visual mode" })
 keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up/down in visual mode" })
 
---split navigations
+-- Navigation Keymaps
 keymap("n", "<C-j>", "TmuxNavigateDown", { desc = "Navigate Window Down" })
 keymap("n", "<C-k>", "TmuxNavigateUp", { desc = "Navigate Window Up" })
 keymap("n", "<C-l>", "TmuxNavigateRight", { desc = "Navigate Window Right" })
 keymap("n", "<C-h>", "TmuxNavigateLeft", { desc = "Navigate Window Left" })
 
+-- Cursor and Scrolling Keymaps
 keymap("n", "J", "mzJ`z", { desc = "Keep cursor in the beginning when joining lines" })
 keymap("n", "<C-d>", "<C-d>zz", { desc = "Keep line in the middle when scrolling down" })
 keymap("n", "<C-u>", "<C-u>zz", { desc = "Keep line in the middle when scrolling up" })
@@ -28,7 +29,7 @@ keymap("n", "N", "Nzzzv", { desc = "Keep line in the middle when searching previ
 -- keymap to create buffer and open file
 keymap("n", "<leader>fo", "<cmd>e hello.txt<CR>", { silent = true, desc = "Open buffer for reference" })
 
--- greatest remap ever
+-- Clipboard and Register Keymaps
 keymap(
 	"x",
 	"<leader>p",
@@ -38,27 +39,31 @@ keymap(
 keymap("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard down" })
 keymap("n", "<leader>P", [["+P]], { desc = "Paste from system clipboard up" })
 
--- next greatest remap ever : asbjornHaland
+-- Clipboard Copy Keymaps
 keymap({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
 keymap("n", "<leader>Y", [["+Y]], { desc = "Copy to system clipboard" })
 
 keymap({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to blackhole register" })
 
+-- Tmux Integration Keymaps
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux sessionizer" })
 
--- insert a line without going to insert mode
-keymap("n", "<leader>o", "o<Esc>k", { desc = "Insert line below and stay in normal mode" })
-keymap("n", "<leader>O", "O<Esc>j", { desc = "Insert line above and stay in normal mode" })
+-- Line Insertion Keymaps
+keymap("n", "<leader>o", "o<Esc>", { desc = "Insert line below and stay in normal mode" })
+keymap("n", "<leader>O", "O<Esc>", { desc = "Insert line above and stay in normal mode" })
 
+-- Quickfix Navigation Keymaps
 keymap("n", "<leader>k", "<cmd>cnext<CR>zz", { desc = "Go to next quickfix" })
 keymap("n", "<leader>j", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix" })
 
+-- Search and Replace Keymaps
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace" })
 keymap("n", "<leader>sl", ":lua SEARCH_AND_REPLACE_DYNAMIC()<CR>", { desc = "Search and replace for N lines" })
-keymap("n", "<leader>sn", "/<C-r><C-w><cr>", { desc = "Search and replace" })
-keymap("n", "<leader>sp", "?<C-r><C-w><cr>", { desc = "Search and replace" })
+keymap("n", "<leader>sn", "/<C-r><C-w><cr>", { desc = "Move to next occurrence of the word" })
+keymap("n", "<leader>sp", "?<C-r><C-w><cr>", { desc = "Move to previous occurrence of the word" })
 
-keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" }) -- make file executable
+-- File Management Keymaps
+keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" }) -- make file executabe
 
 keymap(
 	{ "n", "x" },
@@ -67,18 +72,18 @@ keymap(
 	{ desc = "Reformat Code", silent = true }
 )
 
--- open nvim file in popup
+-- Nvim Configuration Keymaps
 keymap(
 	"n",
 	"<leader>nvim",
-	"<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = false})<CR>",
+	"<cmd>lua require('telescope.builtin').find_files({prompt_title = 'Nvim  Config', cwd = '~/.config/nvim/', hidden = fale})<CR>",
 	{ desc = "Open Nvim Config" }
 )
 
--- oil.nvim shortcuts
+-- Oil.nvim Keymaps
 keymap("n", "-", "<CMD>Oil<CR>", { desc = "OIL: Open parent directory" })
 
--- url supports
+-- URL Manipulation Keymaps
 keymap("n", "ci/", "T/vt/c", { desc = "Change inside URL Slash" })
 keymap("n", "vi/", "T/vt/", { desc = "Select inside URL Slash" })
 keymap("n", "di/", "T/vt/d", { desc = "Delete inside URL Slash" })
@@ -89,17 +94,25 @@ keymap("n", "va/", "T/vf/", { desc = "Select inside URL Slash with Slach" })
 keymap("n", "da/", "T/vf/d", { desc = "Delete inside URL Slash with Slach" })
 keymap("n", "ya/", "T/vf/y", { desc = "Copy inside URL Slash with Slach" })
 
--- barbar config
--- Move to previous/next
-keymap("n", "<s-tab>", "<Cmd>BufferPrevious<CR>", utils.addDesc(opts, "Go to Previous Buffer"))
-keymap("n", "<tab>", "<Cmd>BufferNext<CR>", utils.addDesc(opts, "Go to Next Buffer"))
+-- Camel Case Manipulation Keymaps
+keymap("n", "ci_", "T_vt_c", { desc = "Change inside Underscore" })
+keymap("n", "vi_", "T_vt_", { desc = "Select inside Underscore" })
+keymap("n", "di_", "T_vt_d", { desc = "Delete inside Underscore" })
+keymap("n", "yi_", "T_vt_y", { desc = "Copy inside Underscore" })
 
+-- Exit Insert Mode Keymaps
 keymap("i", "jk", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 keymap("i", "kj", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 keymap("i", "JK", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 keymap("i", "KJ", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
 
+-- Visual Mode Indentation Keymaps
 keymap("v", ">", ">gv", utils.addDesc(opts, "Left Indent but stay in visual mode")) -- Left Indentation
+
+-- Barbar Buffer Management Keymaps
+-- Move to previous/next
+keymap("n", "<s-tab>", "<Cmd>BufferPrevious<CR>", utils.addDesc(opts, "Go to Previous Buffer"))
+keymap("n", "<tab>", "<Cmd>BufferNext<CR>", utils.addDesc(opts, "Go to Next Buffer"))
 
 -- Pin the buffer
 keymap("n", "<leader>pb", "<Cmd>BufferPin<CR>", utils.addDesc(opts, "Pin Buffer"))
@@ -119,7 +132,7 @@ keymap("n", "zs", "<Cmd>SymbolsOutline<CR>", utils.addDesc(opts, "Open Symbols O
 keymap("n", "<leader>lw", "<Cmd>:lua ToggleLineWrap()<CR>", utils.addDesc(opts, "Toggle Line Wrap"))
 
 -- Close buffer
-vim.api.nvim_set_keymap("n", "<leader>cb", "<Cmd>BufferClose<CR>", utils.addDesc(opts, "Close Buffer"))
+keymap("n", "<leader>cb", "<Cmd>BufferClose<CR>", utils.addDesc(opts, "Close Buffer"))
 
 -- Replace ' by " in entire file
 keymap("n", "<leader>std", ":%s/'/\"/g<CR>")
@@ -127,7 +140,7 @@ keymap("n", "<leader>std", ":%s/'/\"/g<CR>")
 -- Replace " by ' in entire file
 keymap("n", "<leader>dts", ":%s/\"/'/g<CR>")
 
--- change terminal exit command
+-- Basic Vim Commands
 keymap("t", "<C-q>", "<C-\\><C-n>")
 
 keymap("n", "<leader><leader>", function()
@@ -141,8 +154,12 @@ end)
 keymap("n", "<leader>w", function()
 	vim.cmd("w!")
 end)
-keymap("n", "<leader>q", "<cmd>:q<CR>", { silent = true, desc = "Quit NeoVim Session" }) -- Quit Neovim after saving the file
+keymap("n", "<leader>q", "<cmd>:q<CR>", { silent = true, desc = "Quit NeoVim Session" }) -- Quit Neovim after saving thefile
 
 keymap("n", "<leader>Q", function()
 	vim.cmd("qa")
 end)
+
+-- Window Management Keymaps
+keymap("n", "<leader>vs", "<cmd>split<CR>", { desc = "Split window horizontally" })
+keymap("n", "<leader>hs", "<cmd>vsplit<CR>", { desc = "Split window vertically" })

@@ -1,5 +1,6 @@
 # Neovim Configuration Setup
 
+
 This repository contains my Neovim configuration written in Lua. Follow the steps below to clone the repository and set up your Neovim environment.
 
 ## Prerequisites

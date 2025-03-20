@@ -107,4 +107,18 @@ return {
 			use_blame_commit_file_urls = true,
 		},
 	},
+	{
+		"VVoruganti/today.nvim",
+		config = function()
+			require("today").setup({
+				local_root = "~/.notes",
+			})
+			vim.keymap.set(
+				"n",
+				"<leader>t",
+				":Today<CR>",
+				{ noremap = true, silent = true, desc = "Open today's note" }
+			)
+		end,
+	},
 }
