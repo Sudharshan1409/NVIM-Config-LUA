@@ -1,5 +1,7 @@
 -- luacheck: globals vim
-function ChangeTheme(color)
+local M = {}
+
+function M.changeTheme(color)
 	local colors = {
 		"gruvbox",
 		"nord",
@@ -22,6 +24,6 @@ function ChangeTheme(color)
 	vim.cmd("highlight CursorLine cterm=NONE ctermbg=236 guibg=#2E323C")
 end
 
-ChangeTheme()
+M.changeTheme()
 
 vim.keymap.set("n", "<leader>cs", "<cmd>lua ColorTheme()<cr>", { noremap = true, silent = true })

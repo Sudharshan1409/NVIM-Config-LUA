@@ -122,21 +122,10 @@ keymap(
 	basicUtils.addDesc(opts, "Close all buffer except pinned")
 )
 
--- Close all buffer except current
-keymap(
-	"n",
-	"<leader>bc",
-	"<Cmd>BufferCloseAllButCurrent<CR>",
-	basicUtils.addDesc(opts, "Close all buffer except current")
-)
-
 -- Re-order to previous/next
 keymap("n", "<leader>bp", "<Cmd>BufferPick<CR>", basicUtils.addDesc(opts, "Pick Buffer"))
 
 keymap("n", "zs", "<Cmd>SymbolsOutline<CR>", basicUtils.addDesc(opts, "Open Symbols Outline"))
-
--- Close buffer
-keymap("n", "<leader>cb", "<Cmd>BufferClose<CR>", basicUtils.addDesc(opts, "Close Buffer"))
 
 -- Replace ' by " in entire file
 keymap("n", "<leader>std", ":%s/'/\"/g<CR>")
