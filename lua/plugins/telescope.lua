@@ -89,23 +89,17 @@ return {
 
 			update_file_ignore_patterns()
 
-			vim.keymap.set("n", "<leader>ff", function()
-				update_file_ignore_patterns()
-				builtin.find_files()
-			end, { desc = "Find Files" })
+			-- vim.keymap.set("n", "<leader>ff", function()
+			-- 	update_file_ignore_patterns()
+			-- 	builtin.find_files()
+			-- end, { desc = "Find Files" })
 
-			vim.keymap.set(
-				"n",
-				"<leader>ft",
-				"<cmd>lua vim.cmd('Oil ' .. vim.fn.getcwd())<cr>",
-				{ desc = "Open Tree in Root Project Directory" }
-			)
-			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent Files" })
-			vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "GREP Search" })
-			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
+			-- vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent Files" })
+			-- vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "GREP Search" })
+			-- vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
 			vim.keymap.set("n", "<leader>fh", "<cmd>Telescope harpoon marks<cr>", { desc = "Harpoon Marks" })
-			vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find Git Files" })
-			vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
+			-- vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find Git Files" })
+			-- vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
 		end,
 	},
 	{

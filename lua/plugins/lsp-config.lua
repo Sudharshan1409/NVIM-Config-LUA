@@ -1,5 +1,6 @@
 -- luacheck: globals vim
-local utils = require("core.utils")
+local basicUtils = require("utils.basic")
+local lspUtils = require("utils.lsp")
 
 return {
 	{
@@ -34,7 +35,7 @@ return {
 			local mason_tool_installer = require("mason-tool-installer")
 
 			mason_tool_installer.setup({
-				ensure_installed = utils.mason_tools_ensure_installed,
+				ensure_installed = lspUtils.mason_tools_ensure_installed,
 			})
 		end,
 	},
@@ -94,11 +95,17 @@ return {
 		"neovim/nvim-lspconfig",
 		cmd = { "LspInfo", "LspInstall", "LspStart" },
 		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			servers = {
+				lua_ls = {},
+			},
+		},
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "williamboman/mason-lspconfig.nvim" },
+			{ "saghen/blink.cmp" },
 		},
-		config = function()
+		config = function(_, opts)
 			-- This is where all the LSP shenanigans will live
 			local lsp_zero = require("lsp-zero")
 			lsp_zero.extend_lspconfig()
@@ -118,52 +125,52 @@ return {
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
 
-				local opts = { buffer = bufnr, remap = false }
+				local options = { buffer = bufnr, remap = false }
 				local keymap = vim.keymap.set
 
 				keymap("n", "gd", function()
 					vim.lsp.buf.definition()
-				end, utils.addDesc(opts, "LSP: Go to definition"))
+				end, basicUtils.addDesc(options, "LSP: Go to definition"))
 				keymap("n", "K", function()
 					vim.lsp.buf.hover()
-				end, utils.addDesc(opts, "LSP: Show hover"))
+				end, basicUtils.addDesc(options, "LSP: Show hover"))
 				keymap("n", "<leader>skw", function()
 					vim.lsp.buf.workspace_symbol()
-				end, utils.addDesc(opts, "LSP: Search workspace symbols"))
+				end, basicUtils.addDesc(options, "LSP: Search workspace symbols"))
 				keymap("n", "gl", function()
 					vim.diagnostic.open_float()
-				end, utils.addDesc(opts, "LSP: Open error in float"))
+				end, basicUtils.addDesc(options, "LSP: Open error in float"))
 				keymap("n", "[", function()
 					vim.diagnostic.goto_prev()
-				end, utils.addDesc(opts, "LSP: Go to previous error"))
+				end, basicUtils.addDesc(options, "LSP: Go to previous error"))
 				keymap("n", "]", function()
 					vim.diagnostic.goto_next()
-				end, utils.addDesc(opts, "LSP: Go to next error"))
+				end, basicUtils.addDesc(options, "LSP: Go to next error"))
 				keymap("n", "<leader>ca", function()
 					vim.lsp.buf.code_action()
-				end, utils.addDesc(opts, "LSP: Code action"))
+				end, basicUtils.addDesc(options, "LSP: Code action"))
 				keymap("n", "<leader>gr", function()
 					vim.lsp.buf.references()
-				end, utils.addDesc(opts, "LSP: Find references"))
+				end, basicUtils.addDesc(options, "LSP: Find references"))
 				keymap("n", "<leader>rn", function()
 					vim.lsp.buf.rename()
-				end, utils.addDesc(opts, "LSP: Rename symbol"))
+				end, basicUtils.addDesc(options, "LSP: Rename symbol"))
 				keymap("i", "<C-h>", function()
 					vim.lsp.buf.signature_help()
-				end, utils.addDesc(opts, "LSP: Signature help"))
+				end, basicUtils.addDesc(options, "LSP: Signature help"))
 				lsp_zero.default_keymaps({ buffer = bufnr })
 			end)
 
 			require("mason-lspconfig").setup({
-				ensure_installed = utils.lspconfig_ensure_installed,
+				ensure_installed = lspUtils.lspconfig_ensure_installed,
 				handlers = {
 					lsp_zero.default_setup,
 					lua_ls = function()
 						-- (Optional) Configure lua language server for neovim
 						local lua_opts = lsp_zero.nvim_lua_ls()
 						require("lspconfig").lua_ls.setup(lua_opts)
-						require("lspconfig").yamlls.setup(utils.yamlls_setup)
-						require("lspconfig").pylsp.setup(utils.pylsp_setup)
+						require("lspconfig").yamlls.setup(lspUtils.yamlls_setup)
+						require("lspconfig").pylsp.setup(lspUtils.pylsp_setup)
 					end,
 				},
 			})

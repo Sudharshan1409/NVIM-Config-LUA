@@ -1,5 +1,5 @@
 -- luacheck: globals vim
-local utils = require("core.utils")
+local basicUtils = require("utils.basic")
 return {
 	"nvim-lua/plenary.nvim",
 	{
@@ -29,7 +29,6 @@ return {
 
 	-- "ericbn/vim-relativize",
 	-- "chase/vim-ansible-yaml",
-	"ggandor/lightspeed.nvim",
 
 	{
 		"numToStr/Comment.nvim",
@@ -89,7 +88,7 @@ return {
 	{
 		"simrat39/symbols-outline.nvim",
 		config = function()
-			require("symbols-outline").setup(utils.symbols_opts)
+			require("symbols-outline").setup(basicUtils.symbols_opts)
 		end,
 	},
 	-- lazy.nvim
@@ -115,7 +114,7 @@ return {
 			})
 			vim.keymap.set(
 				"n",
-				"<leader>t",
+				"<leader>nt",
 				":Today<CR>",
 				{ noremap = true, silent = true, desc = "Open today's note" }
 			)

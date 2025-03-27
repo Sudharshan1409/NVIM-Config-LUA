@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 opt.wildmenu = true
 
 -- Performance settings
-opt.lazyredraw = true
+opt.lazyredraw = false
 
 -- Visual enhancements
 opt.cursorcolumn = false

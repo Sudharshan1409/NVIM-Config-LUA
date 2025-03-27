@@ -2,7 +2,7 @@
 -- Keymap setup
 local keymap = vim.keymap.set
 
-local utils = require("core.utils")
+local basicUtils = require("utils.basic")
 
 local opts = { noremap = true, silent = true }
 
@@ -80,9 +80,6 @@ keymap(
 	{ desc = "Open Nvim Config" }
 )
 
--- Oil.nvim Keymaps
-keymap("n", "-", "<CMD>Oil<CR>", { desc = "OIL: Open parent directory" })
-
 -- URL Manipulation Keymaps
 keymap("n", "ci/", "T/vt/c", { desc = "Change inside URL Slash" })
 keymap("n", "vi/", "T/vt/", { desc = "Select inside URL Slash" })
@@ -101,38 +98,45 @@ keymap("n", "di_", "T_vt_d", { desc = "Delete inside Underscore" })
 keymap("n", "yi_", "T_vt_y", { desc = "Copy inside Underscore" })
 
 -- Exit Insert Mode Keymaps
-keymap("i", "jk", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
-keymap("i", "kj", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
-keymap("i", "JK", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
-keymap("i", "KJ", "<esc>", utils.addDesc(opts, "Exit Insert Mode"))
+keymap("i", "jk", "<esc>", basicUtils.addDesc(opts, "Exit Insert Mode"))
+keymap("i", "kj", "<esc>", basicUtils.addDesc(opts, "Exit Insert Mode"))
+keymap("i", "JK", "<esc>", basicUtils.addDesc(opts, "Exit Insert Mode"))
+keymap("i", "KJ", "<esc>", basicUtils.addDesc(opts, "Exit Insert Mode"))
 
 -- Visual Mode Indentation Keymaps
-keymap("v", ">", ">gv", utils.addDesc(opts, "Left Indent but stay in visual mode")) -- Left Indentation
+keymap("v", ">", ">gv", basicUtils.addDesc(opts, "Left Indent but stay in visual mode")) -- Left Indentation
 
 -- Barbar Buffer Management Keymaps
 -- Move to previous/next
-keymap("n", "<s-tab>", "<Cmd>BufferPrevious<CR>", utils.addDesc(opts, "Go to Previous Buffer"))
-keymap("n", "<tab>", "<Cmd>BufferNext<CR>", utils.addDesc(opts, "Go to Next Buffer"))
+keymap("n", "<s-tab>", "<Cmd>BufferPrevious<CR>", basicUtils.addDesc(opts, "Go to Previous Buffer"))
+keymap("n", "<tab>", "<Cmd>BufferNext<CR>", basicUtils.addDesc(opts, "Go to Next Buffer"))
 
 -- Pin the buffer
-keymap("n", "<leader>pb", "<Cmd>BufferPin<CR>", utils.addDesc(opts, "Pin Buffer"))
+keymap("n", "<leader>pb", "<Cmd>BufferPin<CR>", basicUtils.addDesc(opts, "Pin Buffer"))
 
 -- Close all buffer except pinned
-keymap("n", "<leader>bcp", "<Cmd>BufferCloseAllButPinned<CR>", utils.addDesc(opts, "Close all buffer except pinned"))
+keymap(
+	"n",
+	"<leader>bcp",
+	"<Cmd>BufferCloseAllButPinned<CR>",
+	basicUtils.addDesc(opts, "Close all buffer except pinned")
+)
 
 -- Close all buffer except current
-keymap("n", "<leader>bc", "<Cmd>BufferCloseAllButCurrent<CR>", utils.addDesc(opts, "Close all buffer except current"))
+keymap(
+	"n",
+	"<leader>bc",
+	"<Cmd>BufferCloseAllButCurrent<CR>",
+	basicUtils.addDesc(opts, "Close all buffer except current")
+)
 
 -- Re-order to previous/next
-keymap("n", "<leader>bp", "<Cmd>BufferPick<CR>", utils.addDesc(opts, "Pick Buffer"))
+keymap("n", "<leader>bp", "<Cmd>BufferPick<CR>", basicUtils.addDesc(opts, "Pick Buffer"))
 
-keymap("n", "zs", "<Cmd>SymbolsOutline<CR>", utils.addDesc(opts, "Open Symbols Outline"))
-
--- Toggle Line Wrap
-keymap("n", "<leader>lw", "<Cmd>:lua ToggleLineWrap()<CR>", utils.addDesc(opts, "Toggle Line Wrap"))
+keymap("n", "zs", "<Cmd>SymbolsOutline<CR>", basicUtils.addDesc(opts, "Open Symbols Outline"))
 
 -- Close buffer
-keymap("n", "<leader>cb", "<Cmd>BufferClose<CR>", utils.addDesc(opts, "Close Buffer"))
+keymap("n", "<leader>cb", "<Cmd>BufferClose<CR>", basicUtils.addDesc(opts, "Close Buffer"))
 
 -- Replace ' by " in entire file
 keymap("n", "<leader>std", ":%s/'/\"/g<CR>")

@@ -63,7 +63,7 @@ return {
 			ncdu:toggle()
 		end
 
-		vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
+		-- vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
 		vim.api.nvim_set_keymap("n", "<leader>nn", "<cmd>lua _NODE_TOGGLE()<CR>", { noremap = true, silent = true })
 		vim.api.nvim_set_keymap("n", "<leader>du", "<cmd>lua _NCDU_TOGGLE()<CR>", { noremap = true, silent = true })
 		vim.api.nvim_set_keymap("n", "<leader>py", "<cmd>lua _PYTHON_TOGGLE()<CR>", { noremap = true, silent = true })
