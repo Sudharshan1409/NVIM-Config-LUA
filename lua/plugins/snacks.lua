@@ -1,5 +1,5 @@
--- luacheck: globals vim Snacks
-local snacksUtils = require("utils.snacks")
+-- luacheck: globals vim
+local snacksUtils = require("utils.snacks-utils")
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -13,28 +13,28 @@ return {
 			callback = function()
 				-- Setup some globals for debugging (lazy-loaded)
 				_G.dd = function(...)
-					Snacks.debug.inspect(...)
+					require("snacks").debug.inspect(...)
 				end
 				_G.bt = function()
-					Snacks.debug.backtrace()
+					require("snacks").debug.backtrace()
 				end
 				vim.print = _G.dd -- Override print to use snacks for `:=` command
 
 				-- Create some toggle mappings
-				Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
-				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
-				Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>ul")
-				Snacks.toggle.diagnostics():map("<leader>ud")
-				Snacks.toggle
+				require("snacks").toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+				require("snacks").toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+				require("snacks").toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>ul")
+				require("snacks").toggle.diagnostics():map("<leader>ud")
+				require("snacks").toggle
 					.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
 					:map("<leader>uc")
-				Snacks.toggle.treesitter():map("<leader>uT")
-				Snacks.toggle
+				require("snacks").toggle.treesitter():map("<leader>uT")
+				require("snacks").toggle
 					.option("background", { off = "light", on = "dark", name = "Dark Background" })
 					:map("<leader>ub")
-				Snacks.toggle.inlay_hints():map("<leader>uh")
-				Snacks.toggle.indent():map("<leader>ug")
-				Snacks.toggle.dim():map("<leader>uD")
+				require("snacks").toggle.inlay_hints():map("<leader>uh")
+				require("snacks").toggle.indent():map("<leader>ug")
+				require("snacks").toggle.dim():map("<leader>uD")
 			end,
 		})
 	end,

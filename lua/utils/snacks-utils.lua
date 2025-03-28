@@ -1,15 +1,8 @@
--- luacheck: globals vim require("snacks")
+-- luacheck: globals vim snacks
 local M = {}
 
 M.keys = {
 	-- Top Pickers & Explorer
-	{
-		"<leader>fb",
-		function()
-			require("snacks").picker.buffers()
-		end,
-		desc = "Buffers",
-	},
 	{
 		"<leader>/",
 		function()
@@ -130,7 +123,7 @@ M.keys = {
 		function()
 			require("snacks").picker.lines()
 		end,
-		desc = "Buffer Lines",
+		desc = "Grep in current Buffer",
 	},
 	{
 		"<leader>sB",
@@ -170,7 +163,7 @@ M.keys = {
 		desc = "Autocmds",
 	},
 	{
-		"<leader>fC",
+		"<leader>sC",
 		function()
 			require("snacks").picker.commands()
 		end,
@@ -377,14 +370,33 @@ M.keys = {
 
 M.opts = {
 	bigfile = { enabled = true },
-	dashboard = { enabled = true },
+	dashboard = {
+		enabled = true,
+		sections = {
+			{ section = "header" },
+			{ section = "keys", gap = 1, padding = 1 },
+			{ pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+			{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+			{
+				pane = 2,
+				icon = " ",
+				title = "Git Status",
+				section = "terminal",
+				enabled = function()
+					return require("snacks").git.get_root() ~= nil
+				end,
+				cmd = "git status --short --branch --renames",
+				height = 10,
+				padding = 1,
+				ttl = 5 * 60,
+				indent = 3,
+			},
+			{ section = "startup" },
+		},
+	},
 	explorer = {
 		enabled = true,
-		auto_close = true,
 		focus = "input",
-		jump = {
-			close = false,
-		},
 	},
 	indent = { enabled = true },
 	input = { enabled = true },
@@ -394,6 +406,28 @@ M.opts = {
 	},
 	picker = {
 		enabled = true,
+		formatters = {
+			text = {
+				ft = nil, ---@type string? filetype for highlighting
+			},
+			file = {
+				filename_first = true, -- display filename before the file path
+				truncate = 40, -- truncate the file path to (roughly) this length
+				filename_only = false, -- only show the filename
+				icon_width = 2, -- width of the icon (in characters)
+				git_status_hl = true, -- use the git status highlight group for the filename
+			},
+			selected = {
+				show_always = false, -- only show the selected column when there are multiple selections
+				unselected = true, -- use the unselected icon for unselected items
+			},
+			severity = {
+				icons = true, -- show severity icons
+				level = false, -- show severity level
+				---@type "left"|"right"
+				pos = "left", -- position of the diagnostics
+			},
+		},
 		matchers = {
 			frecency = true,
 			cwd_bonus = false,
@@ -457,6 +491,11 @@ M.opts = {
 		},
 		sources = {
 			explorer = {
+				auto_close = false,
+				jump = {
+					close = true,
+				},
+				git_status_open = true,
 				win = {
 					list = {
 						keys = {

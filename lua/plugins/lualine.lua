@@ -1,6 +1,12 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
+	dependencies = {
+		{
+			"nvim-tree/nvim-web-devicons",
+			opt = true,
+		},
+		"folke/noice.nvim",
+	},
 	config = function()
         -- Bubbles config for lualine
 -- Author: lokesh-krishna
@@ -47,7 +53,13 @@ local colors = {
 				},
 				lualine_b = { "filename", "branch" },
 				lualine_c = { "fileformat" },
-				lualine_x = {},
+				lualine_x = {
+					{
+						require("noice").api.statusline.mode.get,
+						cond = require("noice").api.statusline.mode.has,
+						color = { fg = "#ff9e64" },
+					},
+				},
 				lualine_y = { "filetype", "progress" },
 				lualine_z = {
 					{ "location", separator = { right = "" }, left_padding = 2 },

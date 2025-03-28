@@ -18,8 +18,6 @@ keymap("n", "<C-h>", "TmuxNavigateLeft", { desc = "Navigate Window Left" })
 
 -- Cursor and Scrolling Keymaps
 keymap("n", "J", "mzJ`z", { desc = "Keep cursor in the beginning when joining lines" })
-keymap("n", "<C-d>", "<C-d>zz", { desc = "Keep line in the middle when scrolling down" })
-keymap("n", "<C-u>", "<C-u>zz", { desc = "Keep line in the middle when scrolling up" })
 keymap("n", "G", "Gzz", { desc = "Keep line in the middle when going to last line" })
 keymap("i", "<C-j>", "<Down><Down><Down><Down><Down>", { desc = "Move cursor 5 lines down" })
 keymap("i", "<C-k>", "<Up><Up><Up><Up><Up>", { desc = "Move cursor 5 lines up" })
@@ -154,5 +152,5 @@ keymap("n", "<leader>Q", function()
 end)
 
 -- Window Management Keymaps
-keymap("n", "<leader>vs", "<cmd>split<CR>", { desc = "Split window horizontally" })
-keymap("n", "<leader>hs", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
+keymap("n", "<leader>hs", "<cmd>split<CR>", { desc = "Split window horizontally" })
+keymap("n", "<leader>vs", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
