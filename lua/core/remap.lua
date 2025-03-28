@@ -154,3 +154,6 @@ end)
 -- Window Management Keymaps
 keymap("n", "<leader>hs", "<cmd>split<CR>", { desc = "Split window horizontally" })
 keymap("n", "<leader>vs", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
+
+-- lazy
+keymap("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
