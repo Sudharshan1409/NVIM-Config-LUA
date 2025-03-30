@@ -1,3 +1,3 @@
 require("core")
 require("lazy-config")
-require("plugin-config.init")
+require("plugin-config")

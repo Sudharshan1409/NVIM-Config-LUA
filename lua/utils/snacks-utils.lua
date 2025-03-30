@@ -29,14 +29,21 @@ M.keys = {
 		function()
 			require("snacks").explorer()
 		end,
-		desc = "File Explorer",
+		desc = "File Explorer in project CWD",
 	},
 	{
 		"-",
 		function()
 			require("snacks").explorer({ cwd = vim.fn.expand("%:p:h") })
 		end,
-		desc = "File Explorer",
+		desc = "File Explorer in file CWD",
+	},
+	{
+		"_",
+		function()
+			require("snacks").explorer()
+		end,
+		desc = "File Explorer in project CWD",
 	},
 	-- find
 	{
