@@ -31,6 +31,13 @@ M.keys = {
 		end,
 		desc = "File Explorer",
 	},
+	{
+		"-",
+		function()
+			require("snacks").explorer({ cwd = vim.fn.expand("%:p:h") })
+		end,
+		desc = "File Explorer",
+	},
 	-- find
 	{
 		"<leader>fb",
