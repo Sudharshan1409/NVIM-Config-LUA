@@ -318,7 +318,7 @@ M.keys = {
 		desc = "Notification History",
 	},
 	{
-		"<leader>cR",
+		"<leader>cr",
 		function()
 			require("snacks").rename.rename_file()
 		end,

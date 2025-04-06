@@ -20,6 +20,7 @@ return {
 				graphql = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				toml = { "prettier" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

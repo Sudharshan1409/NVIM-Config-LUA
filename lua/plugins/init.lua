@@ -120,4 +120,13 @@ return {
 			)
 		end,
 	},
+	-- Lazy.nvim
+	{
+		"windwp/nvim-ts-autotag",
+		opts = {},
+		event = "InsertEnter",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
 }
